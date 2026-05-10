@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -10,10 +9,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const jetBrainsMono = JetBrains_Mono({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
-  variable: "--font-jetbrains-mono",
+  variable: "--font-instrument-serif",
 });
 
 const title = "Yoink - The missing layer between YouTube and your AI";
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${GeistSans.variable} ${jetBrainsMono.variable}`}
+      className={`${inter.variable} ${instrumentSerif.variable}`}
     >
       <body className="font-sans antialiased">
         {children}

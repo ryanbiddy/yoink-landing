@@ -19,17 +19,12 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         display: [
-          "var(--font-geist)",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
+          "var(--font-instrument-serif)",
+          "Georgia",
+          "Times New Roman",
+          "serif",
         ],
-        mono: [
-          "var(--font-jetbrains-mono)",
-          "ui-monospace",
-          "SFMono-Regular",
-          "monospace",
-        ],
+        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
       },
       boxShadow: {
         soft: "0 24px 70px rgba(10, 10, 10, 0.08)",

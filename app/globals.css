@@ -44,6 +44,19 @@ a {
   background-position: center top;
 }
 
+.stripe-divider {
+  height: 88px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.075) 0,
+    rgba(255, 255, 255, 0.075) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
+
 .grain {
   position: relative;
 }
