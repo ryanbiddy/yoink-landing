@@ -119,17 +119,17 @@ function YouTubeStepVisual() {
 function YoinkButtonVisual() {
   return (
     <div className="flex h-full w-full items-center justify-center overflow-hidden">
-      <div className="relative h-[60px] w-[260px] max-w-full overflow-hidden border border-white/18 bg-[#111]">
+      <div className="relative h-[72px] w-[177px] max-w-full overflow-hidden border border-white/18 bg-[#111]">
         <Image
           src="/youtube-yoink-controls-crop.png"
           alt="Yoink button inside the YouTube video controls row."
-          width={260}
-          height={60}
+          width={236}
+          height={96}
           className="h-auto w-full"
         />
         <div
           aria-hidden="true"
-          className="absolute left-[70px] top-[6px] h-[48px] w-[112px] rounded-full border-2 border-yoink-orange shadow-[0_0_0_2px_rgba(234,88,12,0.38),0_0_16px_rgba(234,88,12,0.92),inset_0_0_12px_rgba(234,88,12,0.25)]"
+          className="absolute left-[4px] top-[8px] h-[56px] w-[168px] rounded-full border-2 border-yoink-orange shadow-[0_0_0_2px_rgba(234,88,12,0.32),0_0_16px_rgba(234,88,12,0.86),inset_0_0_10px_rgba(234,88,12,0.2)]"
         />
       </div>
     </div>
