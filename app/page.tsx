@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
+import { AiAnalysisCarousel } from "../components/AiAnalysisCarousel";
 
 const githubUrl = "https://github.com/ryanbiddy/yoink";
 const windowsDownloadUrl =
@@ -11,25 +12,25 @@ const steps = [
     number: "01",
     title: "Find a video",
     body: "Any YouTube video, channel, or playlist.",
-    Icon: PlayOutlineIcon,
+    Visual: YouTubeStepVisual,
   },
   {
     number: "02",
     title: "Click Yoink",
     body: "One button under every video. Right-click thumbnails too.",
-    Icon: CursorIcon,
+    Visual: YoinkButtonVisual,
   },
   {
     number: "03",
     title: "Get the corpus",
     body: "Transcript, screenshots, comments, channel context - all structured.",
-    Icon: DocumentIcon,
+    Visual: CorpusLabelsVisual,
   },
   {
     number: "04",
     title: "Send to your AI",
     body: "Claude. ChatGPT. Whatever you already use.",
-    Icon: ArrowForwardIcon,
+    Visual: AiLogosVisual,
   },
 ];
 
@@ -85,6 +86,139 @@ function WindowsIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function YouTubeLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 90 64" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M87.9 10c-1-3.9-4.1-6.9-8-8C72.8 0 45 0 45 0S17.2 0 10.1 2c-3.9 1.1-7 4.1-8 8C.2 17.1.2 32 .2 32s0 14.9 1.9 22c1 3.9 4.1 6.9 8 8 7.1 2 34.9 2 34.9 2s27.8 0 34.9-2c3.9-1.1 7-4.1 8-8 1.9-7.1 1.9-22 1.9-22s0-14.9-1.9-22Z"
+        fill="#FF0000"
+      />
+      <path d="M36 45.7 59.2 32 36 18.3v27.4Z" fill="white" />
+    </svg>
+  );
+}
+
+function AnthropicMarkIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M12 4 4.5 20h3l1.4-3.2h6.2l1.4 3.2h3L12 4Zm-1.9 10.2L12 9.7l1.9 4.5h-3.8Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function OpenAIMarkIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M12 4.2c1.6 0 2.9.8 3.7 2.1 1.5 0 2.9.8 3.7 2.2.8 1.4.7 3-.1 4.3.7 1.3.7 2.9-.1 4.3-.8 1.4-2.2 2.2-3.7 2.2-.8 1.3-2.1 2.1-3.7 2.1s-2.9-.8-3.7-2.1c-1.5 0-2.9-.8-3.7-2.2-.8-1.4-.7-3 .1-4.3-.7-1.3-.7-2.9.1-4.3.8-1.4 2.2-2.2 3.7-2.2.8-1.3 2.1-2.1 3.7-2.1Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.3 6.3 12 8.4l3.7-2.1M4.5 12.8l3.8-2.2V6.3M8.1 19.3v-4.4l-3.6-2.1M15.7 19.3l-3.7-2.1-3.9 2.1M19.3 12.8l-3.6 2.1v4.4M15.7 6.3v4.3l3.6 2.2M8.3 10.6l3.7 2.2 3.7-2.2M12 12.8v4.4"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function YouTubeStepVisual() {
+  return (
+    <div className="flex w-full max-w-[230px] flex-col items-center gap-4">
+      <YouTubeLogo className="h-12 w-auto" />
+      <div className="w-full overflow-hidden border border-white/12 bg-black">
+        <Image
+          src="/karpathy-thumbnail.jpg"
+          alt=""
+          width={320}
+          height={180}
+          className="aspect-video w-full object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
+function YoinkButtonVisual() {
+  return (
+    <div className="inline-flex items-center gap-3 border border-white/15 bg-[#111] px-5 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.35)]">
+      <Image src="/logo-mark-color.png" alt="" width={24} height={24} />
+      <span className="font-serif text-2xl font-bold leading-none text-white">
+        Yoink
+      </span>
+      <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e] shadow-[0_0_14px_rgba(34,197,94,0.85)]" />
+    </div>
+  );
+}
+
+function CorpusLabelsVisual() {
+  const labels = [
+    "Metadata",
+    "Transcript",
+    "Screenshots",
+    "Comments",
+    "Channel context",
+  ];
+
+  return (
+    <div className="w-full max-w-[220px] border border-white/12 bg-[#090909] px-5 py-3">
+      {labels.map((label, index) => (
+        <div
+          key={label}
+          className={`py-3 text-sm font-semibold text-yoink-orange ${
+            index === labels.length - 1 ? "" : "border-b border-white/10"
+          }`}
+        >
+          {label}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AiLogoTile({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex min-w-0 flex-col items-center gap-2 text-center text-white">
+      <span className="flex h-10 w-10 items-center justify-center border border-white/12 bg-black/35 text-white">
+        {children}
+      </span>
+      <span className="text-[10px] font-semibold leading-tight">{label}</span>
+    </div>
+  );
+}
+
+function AiLogosVisual() {
+  return (
+    <div className="grid w-full max-w-[260px] grid-cols-4 gap-3">
+      <AiLogoTile label="Claude">
+        <AnthropicMarkIcon className="h-5 w-5" />
+      </AiLogoTile>
+      <AiLogoTile label="ChatGPT">
+        <OpenAIMarkIcon className="h-5 w-5" />
+      </AiLogoTile>
+      <AiLogoTile label="Claude Code">
+        <AnthropicMarkIcon className="h-5 w-5" />
+      </AiLogoTile>
+      <AiLogoTile label="Codex">
+        <OpenAIMarkIcon className="h-5 w-5" />
+      </AiLogoTile>
+    </div>
+  );
+}
+
 function PlayOutlineIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -101,58 +235,6 @@ function PlayOutlineIcon(props: SVGProps<SVGSVGElement>) {
         d="m10 9 5 3-5 3V9Z"
         stroke="currentColor"
         strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function CursorIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="m7 4 9.5 8-4.2 1 2.8 5.2-2.8 1.5-2.8-5.3L6.3 18 7 4Z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M17.5 5.5 19 4M19.5 10h2M4 20l-1.5 1.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function DocumentIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M7 3.5h7l3 3v14H7v-17Z"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M14 3.5V7h3M9.5 11h5M9.5 14h5M9.5 17h3"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ArrowForwardIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
         strokeLinejoin="round"
       />
     </svg>
@@ -334,7 +416,7 @@ export default function Home() {
           <div className="mt-10">
             <DownloadButtons />
           </div>
-          <p className="mt-5 text-base text-[#737373]">
+          <p className="mt-5 text-base text-[#8a8a8a]">
             Free forever.{" "}
             <a
               href={githubUrl}
@@ -372,10 +454,10 @@ export default function Home() {
           <div className="relative mt-14">
             <div className="absolute left-8 right-8 top-12 hidden h-px bg-white/15 lg:block" />
             <div className="grid gap-8 lg:grid-cols-4">
-              {steps.map(({ number, title, body, Icon }) => (
+              {steps.map(({ number, title, body, Visual }) => (
                 <article key={number} className="relative bg-yoink-black">
-                  <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full border border-white/15 bg-yoink-black text-yoink-orange">
-                    <Icon className="h-11 w-11" />
+                  <div className="mb-8 flex h-44 items-center justify-center border border-white/12 bg-[#0f0f0f] p-4">
+                    <Visual />
                   </div>
                   <p className="text-sm font-semibold text-yoink-orange">
                     {number}
@@ -383,7 +465,9 @@ export default function Home() {
                   <h3 className="mt-4 font-display text-4xl font-bold leading-none text-white">
                     {title}
                   </h3>
-                  <p className="mt-4 text-base leading-7 text-[#737373]">{body}</p>
+                  <p className="mt-4 text-base leading-7 text-[#8a8a8a]">
+                    {body}
+                  </p>
                 </article>
               ))}
             </div>
@@ -401,23 +485,24 @@ export default function Home() {
           </h2>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="border border-white/12 bg-[#0f0f0f] p-4">
+            <div className="min-w-0 overflow-hidden border border-white/12 bg-[#0f0f0f] p-4">
               <Image
                 src="/karpathy-thumbnail.jpg"
                 alt="Placeholder thumbnail for Andrej Karpathy's Intro to Large Language Models talk."
                 width={1280}
                 height={720}
-                className="aspect-video h-auto w-full object-cover"
-                priority
+                className="aspect-video h-auto w-full max-w-full object-cover"
               />
-              <p className="mt-4 text-sm text-[#737373]">
+              <p className="mt-4 text-sm text-[#8a8a8a]">
                 Placeholder source: an AI-relevant YouTube talk.
               </p>
             </div>
 
-            <div className="border border-white/12 bg-[#0f0f0f] p-5">
-              <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-                <p className="text-sm font-semibold text-white">yoink.md</p>
+            <div className="min-w-0 border border-white/12 bg-[#0f0f0f] p-5">
+              <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+                <p className="min-w-0 break-all text-sm font-semibold text-white">
+                  karpathy-intro-to-large-language-models.md
+                </p>
                 <p className="text-xs font-semibold uppercase text-yoink-orange">
                   structured corpus
                 </p>
@@ -439,29 +524,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-6 border border-white/12 bg-[#0f0f0f] p-5">
-            <p className="text-xs font-semibold uppercase text-yoink-orange">
-              Claude + ChatGPT analysis
-            </p>
-            <div className="mt-5 grid gap-5 md:grid-cols-2">
-              {["Claude", "ChatGPT"].map((tool) => (
-                <div key={tool} className="border border-white/10 p-4">
-                  <h3 className="font-display text-3xl font-bold text-white">
-                    {tool}
-                  </h3>
-                  <p className="mt-3 text-base leading-7 text-[#a3a3a3]">
-                    This talk introduces token prediction, transformer attention,
-                    scaling behavior, and practical implementation tradeoffs. The
-                    strongest sections to study first are the model intuition,
-                    training loop, and examples of failure modes.
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-5 text-sm text-[#737373]">
-              From YouTube URL to Claude and ChatGPT analysis in one click.
-            </p>
-          </div>
+          <AiAnalysisCarousel />
         </div>
       </section>
 
@@ -476,7 +539,7 @@ export default function Home() {
             </h2>
           </div>
           <div>
-            <p className="text-xl leading-9 text-[#737373]">
+            <p className="text-xl leading-9 text-[#8a8a8a]">
               Yoink runs locally. No cloud uploads. No accounts. No tracking.
               Your videos, transcripts, and analyses never leave your hardware
               unless you choose to send them somewhere.
@@ -560,7 +623,7 @@ export default function Home() {
       </section>
 
       <footer className="px-5 py-10 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-8 text-sm text-[#737373] md:grid-cols-3 md:items-end">
+        <div className="mx-auto grid max-w-7xl gap-8 text-sm text-[#8a8a8a] md:grid-cols-3 md:items-end">
           <div>
             <BrandLockup footer />
             <p className="mt-2">by ReplayRyan</p>
