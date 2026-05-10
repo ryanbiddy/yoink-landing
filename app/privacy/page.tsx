@@ -8,24 +8,33 @@ export const metadata: Metadata = {
     "Privacy policy for Yoink, a local-only Chrome extension for structuring YouTube video context.",
 };
 
+function BrandLockup() {
+  return (
+    <span className="inline-flex items-center gap-3">
+      <Image
+        src="/logo-mark-color.png"
+        alt=""
+        width={32}
+        height={32}
+        priority
+        className="h-8 w-8"
+      />
+      <span className="font-display text-2xl font-black text-white">Yoink</span>
+    </span>
+  );
+}
+
 export default function PrivacyPage() {
   return (
-    <main className="bg-white text-yoink-black">
-      <header className="border-b border-neutral-200">
+    <main className="min-h-screen bg-yoink-black text-white">
+      <header className="border-b border-yoink-orange">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-5 sm:px-8">
-          <Link href="/" aria-label="Yoink home" className="focus-ring rounded-md">
-            <Image
-              src="/logo-dark.png"
-              alt="Yoink"
-              width={128}
-              height={38}
-              priority
-              className="h-9 w-auto"
-            />
+          <Link href="/" aria-label="Yoink home" className="focus-ring rounded-sm">
+            <BrandLockup />
           </Link>
           <Link
             href="/"
-            className="focus-ring rounded-md border border-neutral-300 px-4 py-2 text-sm font-bold transition hover:border-neutral-500"
+            className="focus-ring border border-yoink-orange/60 px-4 py-2 font-mono text-xs font-extrabold uppercase text-white transition hover:bg-yoink-orange hover:text-yoink-black"
           >
             Back home
           </Link>
@@ -33,14 +42,14 @@ export default function PrivacyPage() {
       </header>
 
       <article className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
-        <p className="text-sm font-semibold uppercase text-yoink-black">
+        <p className="font-mono text-xs font-extrabold uppercase text-yoink-orange">
           Last updated: May 10, 2026
         </p>
-        <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">
+        <h1 className="mt-4 font-display text-5xl font-black leading-none sm:text-6xl">
           Yoink Privacy Policy
         </h1>
 
-        <div className="mt-10 space-y-7 text-lg leading-8 text-neutral-700">
+        <div className="mt-10 space-y-8 text-lg leading-8 text-yoink-ash">
           <p>
             Yoink is designed to be a local-only tool. The extension helps you
             turn the YouTube page you are already viewing into a structured
@@ -50,7 +59,7 @@ export default function PrivacyPage() {
           </p>
 
           <section>
-            <h2 className="text-2xl font-black text-yoink-black">
+            <h2 className="font-display text-3xl font-black text-white">
               What Yoink processes
             </h2>
             <p className="mt-3">
@@ -64,7 +73,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-black text-yoink-black">
+            <h2 className="font-display text-3xl font-black text-white">
               Data collection
             </h2>
             <p className="mt-3">
@@ -77,7 +86,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-black text-yoink-black">
+            <h2 className="font-display text-3xl font-black text-white">
               Optional analytics
             </h2>
             <p className="mt-3">
@@ -92,7 +101,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-black text-yoink-black">
+            <h2 className="font-display text-3xl font-black text-white">
               Third-party services
             </h2>
             <p className="mt-3">
@@ -104,7 +113,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-black text-yoink-black">
+            <h2 className="font-display text-3xl font-black text-white">
               Changes and contact
             </h2>
             <p className="mt-3">
@@ -112,7 +121,7 @@ export default function PrivacyPage() {
               be reflected on this page. Questions about Yoink privacy can be
               sent to{" "}
               <a
-                className="focus-ring rounded-sm font-bold text-yoink-black underline decoration-yoink-orange decoration-2 underline-offset-4"
+                className="focus-ring font-bold text-yoink-orange underline decoration-white decoration-2 underline-offset-4"
                 href="mailto:ryan@ryanbiddy.com"
               >
                 ryan@ryanbiddy.com

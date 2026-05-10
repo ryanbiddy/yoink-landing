@@ -29,46 +29,65 @@ const youtubePlaceholder = `
         text-decoration: none;
       }
 
+      .frame {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(234, 88, 12, 0.45);
+      }
+
       .play {
         align-items: center;
         background: #EA580C;
-        border-radius: 8px;
+        box-shadow: 7px 7px 0 #FFFFFF;
         display: flex;
-        height: 58px;
+        height: 64px;
         justify-content: center;
-        width: 82px;
+        width: 92px;
       }
 
       .play::before {
-        border-bottom: 12px solid transparent;
-        border-left: 18px solid #0A0A0A;
-        border-top: 12px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-left: 20px solid #0A0A0A;
+        border-top: 13px solid transparent;
         content: "";
         margin-left: 5px;
       }
 
-      .label {
-        font-size: 14px;
+      .label,
+      .hint,
+      .time {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 12px;
         font-weight: 800;
-        left: 24px;
         position: absolute;
-        top: 22px;
+        text-transform: uppercase;
+      }
+
+      .label {
+        left: 30px;
+        top: 28px;
       }
 
       .hint {
-        bottom: 22px;
+        bottom: 28px;
         color: rgba(255, 255, 255, 0.68);
-        font-size: 13px;
-        left: 24px;
-        position: absolute;
+        left: 30px;
+      }
+
+      .time {
+        bottom: 28px;
+        color: #EA580C;
+        right: 30px;
       }
     </style>
   </head>
   <body>
     <a href="https://www.youtube.com/watch?v=ScMzIvxBSi4" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube placeholder video">
-      <span class="label">30-second demo placeholder</span>
+      <span class="frame" aria-hidden="true"></span>
+      <span class="label">Demo placeholder</span>
       <span class="play" aria-hidden="true"></span>
-      <span class="hint">Demo video drops in here</span>
+      <span class="hint">30 seconds goes here</span>
+      <span class="time">00:30</span>
     </a>
   </body>
 </html>`;
@@ -82,18 +101,21 @@ const problems = [
 const features = [
   {
     title: "One-click yoink",
+    eyebrow: "Capture",
     body: "Capture the useful parts of any YouTube video without building a manual research packet.",
     image: "/screenshot-1.png",
     alt: "Yoink one-click capture interface placeholder.",
   },
   {
     title: "Structured 8-section corpus",
+    eyebrow: "Organize",
     body: "Transcript, key frames, comments, metadata, chapters, links, and context arrive cleanly organized.",
     image: "/screenshot-5.png",
     alt: "Structured Yoink corpus placeholder.",
   },
   {
     title: "Send to Claude or ChatGPT",
+    eyebrow: "Paste",
     body: "Copy once, paste anywhere, and keep your workflow in the AI tool you already use.",
     image: "/screenshot-2.png",
     alt: "Send to Claude or ChatGPT placeholder.",
@@ -101,9 +123,21 @@ const features = [
 ];
 
 const comparisons = [
-  "Like Glasp, but structured for paste-into-Claude workflows",
-  "Like vidIQ, but local and free",
-  "Like NotebookLM, but choose your own AI",
+  {
+    competitor: "Glasp",
+    copy: "structured for paste-into-Claude workflows",
+    full: "Like Glasp, but structured for paste-into-Claude workflows",
+  },
+  {
+    competitor: "vidIQ",
+    copy: "local and free",
+    full: "Like vidIQ, but local and free",
+  },
+  {
+    competitor: "NotebookLM",
+    copy: "choose your own AI",
+    full: "Like NotebookLM, but choose your own AI",
+  },
 ];
 
 const steps = [
@@ -228,45 +262,49 @@ function PasteIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  body,
-  tone = "light",
-}: {
-  eyebrow?: string;
-  title: string;
-  body?: string;
-  tone?: "light" | "dark";
-}) {
-  const isDark = tone === "dark";
-
+function BrandLockup({ small = false }: { small?: boolean }) {
   return (
-    <div className="mx-auto max-w-3xl text-center">
-      {eyebrow ? (
-        <p
-          className={`mb-4 text-sm font-semibold uppercase ${
-            isDark ? "text-yoink-orange" : "text-yoink-black"
-          }`}
-        >
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2
-        className={`text-3xl font-black leading-tight sm:text-4xl md:text-5xl ${
-          isDark ? "text-white" : "text-yoink-black"
+    <span className="inline-flex items-center gap-3">
+      <Image
+        src="/logo-mark-color.png"
+        alt=""
+        width={small ? 24 : 32}
+        height={small ? 24 : 32}
+        className={small ? "h-6 w-6" : "h-8 w-8"}
+        priority={!small}
+      />
+      <span
+        className={`font-display font-black text-white ${
+          small ? "text-lg" : "text-2xl"
         }`}
       >
+        Yoink
+      </span>
+    </span>
+  );
+}
+
+function SectionIntro({
+  kicker,
+  title,
+  body,
+}: {
+  kicker?: string;
+  title: string;
+  body?: string;
+}) {
+  return (
+    <div className="max-w-3xl">
+      {kicker ? (
+        <p className="mb-4 font-mono text-xs font-extrabold uppercase text-yoink-orange">
+          {kicker}
+        </p>
+      ) : null}
+      <h2 className="font-display text-4xl font-black leading-none text-white sm:text-5xl lg:text-6xl">
         {title}
       </h2>
       {body ? (
-        <p
-          className={`mt-5 text-lg leading-8 ${
-            isDark ? "text-white/70" : "text-neutral-600"
-          }`}
-        >
-          {body}
-        </p>
+        <p className="mt-5 text-lg leading-8 text-yoink-ash">{body}</p>
       ) : null}
     </div>
   );
@@ -274,44 +312,74 @@ function SectionHeading({
 
 export default function Home() {
   return (
-    <main className="bg-white text-yoink-black">
-      <section className="surface-grid border-b border-neutral-200">
-        <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
-          <Link href="/" aria-label="Yoink home" className="focus-ring rounded-md">
-            <Image
-              src="/logo-dark.png"
-              alt="Yoink"
-              width={128}
-              height={38}
-              priority
-              className="h-9 w-auto"
-            />
+    <main className="overflow-hidden bg-yoink-black text-white">
+      <section className="dark-grid grain relative isolate border-b border-yoink-orange">
+        <Image
+          src="/logo-mark-color.png"
+          alt=""
+          width={320}
+          height={320}
+          priority
+          className="pointer-events-none absolute -right-20 top-36 -z-10 h-72 w-72 rotate-12 opacity-10 sm:h-96 sm:w-96"
+        />
+
+        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
+          <Link href="/" aria-label="Yoink home" className="focus-ring rounded-sm">
+            <BrandLockup />
           </Link>
           <a
             href={chromeWebStoreUrl}
-            className="focus-ring inline-flex items-center gap-2 rounded-md bg-yoink-black px-4 py-2.5 text-sm font-bold text-white transition hover:bg-neutral-800"
+            className="focus-ring inline-flex items-center gap-2 bg-yoink-orange px-4 py-2.5 font-mono text-xs font-extrabold uppercase text-yoink-black shadow-[4px_4px_0_#FFFFFF] transition hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#FFFFFF]"
           >
             Install Free
             <ArrowIcon className="h-4 w-4" />
           </a>
         </header>
 
-        <div className="mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 sm:pb-24 sm:pt-20 lg:px-10">
-          <div className="mx-auto max-w-5xl text-center">
-            <p className="mb-5 text-sm font-semibold uppercase text-yoink-black">
-              Free Chrome extension
-            </p>
-            <h1 className="text-5xl font-black leading-none text-yoink-black sm:text-6xl lg:text-7xl">
-              The missing layer between YouTube and your AI.
+        <div className="relative z-10 mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:px-10">
+          <div className="relative max-w-6xl">
+            <div className="mb-7 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 border border-white/15 bg-white/5 px-3 py-2 font-mono text-xs font-extrabold uppercase text-white">
+                <span className="h-2 w-2 rounded-full bg-yoink-orange" />
+                by ReplayRyan
+              </span>
+              <span className="-rotate-2 bg-white px-3 py-2 font-mono text-xs font-extrabold uppercase text-yoink-black shadow-brutal">
+                v1.0
+              </span>
+            </div>
+
+            <h1 className="font-display text-6xl font-black leading-[0.86] text-white sm:text-7xl lg:text-[96px] xl:text-[116px]">
+              The missing layer between YouTube and your{" "}
+              <span className="marker-underline text-yoink-orange">AI.</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-neutral-700 sm:text-xl sm:leading-9">
-              Yoink any YouTube video into Claude or ChatGPT — full transcript,
+
+            <p className="mt-8 max-w-3xl text-xl leading-8 text-yoink-ash sm:text-2xl sm:leading-10">
+              Yoink any YouTube video into Claude or ChatGPT - full transcript,
               screenshots, and metadata in one structured doc.
             </p>
+
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <a
+                href={chromeWebStoreUrl}
+                className="focus-ring inline-flex items-center justify-center gap-2 bg-yoink-orange px-6 py-4 font-mono text-sm font-extrabold uppercase text-yoink-black shadow-brutalWhite transition hover:-translate-y-1 hover:shadow-[10px_10px_0_#FFFFFF]"
+              >
+                Install Yoink Free
+                <ArrowIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://github.com/ryanbiddy/yoink"
+                className="focus-ring inline-flex items-center justify-center border border-yoink-orange/60 px-6 py-4 font-mono text-sm font-extrabold uppercase text-white transition hover:-translate-y-1 hover:border-yoink-orange hover:bg-yoink-orange hover:text-yoink-black"
+              >
+                Open source
+              </a>
+            </div>
           </div>
 
-          <div className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-lg border border-neutral-200 bg-yoink-black shadow-soft">
-            <div className="aspect-video">
+          <div className="relative mx-auto mt-16 max-w-5xl -rotate-1 border-2 border-yoink-orange bg-neutral-950 p-3 shadow-brutal sm:p-4">
+            <div className="absolute -right-4 -top-4 z-10 bg-yoink-orange px-3 py-2 font-mono text-xs font-extrabold uppercase text-yoink-black shadow-[4px_4px_0_#FFFFFF]">
+              30 sec
+            </div>
+            <div className="aspect-video overflow-hidden border border-white/10">
               <iframe
                 className="h-full w-full"
                 srcDoc={youtubePlaceholder}
@@ -324,19 +392,21 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="orange-rule" />
+
       <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading title="You found a great YouTube video. Now what?" />
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <SectionIntro title="You found a great YouTube video. Now what?" />
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {problems.map((problem, index) => (
               <article
                 key={problem}
-                className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm"
+                className="border border-yoink-orange/55 bg-white/[0.035] p-6 transition hover:-translate-y-1 hover:border-yoink-orange hover:shadow-brutal"
               >
-                <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-md bg-neutral-100 text-sm font-black text-yoink-black">
+                <div className="mb-10 font-mono text-sm font-extrabold text-white/45">
                   0{index + 1}
                 </div>
-                <h3 className="text-xl font-black leading-7 text-yoink-black">
+                <h3 className="font-display text-2xl font-black leading-8 text-yoink-orange">
                   {problem}
                 </h3>
               </article>
@@ -345,51 +415,91 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-neutral-200 bg-neutral-50 px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+      <div className="orange-rule" />
+
+      <section className="relative px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="The solution"
+          <SectionIntro
+            kicker="No more context janitor work"
             title="One click. Full corpus. Paste anywhere."
             body="Yoink turns a video page into a structured research document that your AI can actually work with."
           />
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {features.map((feature) => (
-              <article
-                key={feature.title}
-                className="overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm"
-              >
-                <div className="border-b border-neutral-200 bg-neutral-100">
-                  <Image
-                    src={feature.image}
-                    alt={feature.alt}
-                    width={960}
-                    height={620}
-                    className="aspect-[48/31] h-auto w-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-black text-yoink-black">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 leading-7 text-neutral-600">{feature.body}</p>
-                </div>
-              </article>
-            ))}
+
+          <div className="mt-16 space-y-16 lg:space-y-20">
+            {features.map((feature, index) => {
+              const reverse = index % 2 === 1;
+
+              return (
+                <article
+                  key={feature.title}
+                  className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12"
+                >
+                  <div
+                    className={`border border-yoink-orange/45 bg-white/[0.035] p-3 shadow-[0_24px_80px_rgba(0,0,0,0.5)] ${
+                      reverse ? "lg:order-2" : ""
+                    }`}
+                  >
+                    <Image
+                      src={feature.image}
+                      alt={feature.alt}
+                      width={960}
+                      height={620}
+                      className="aspect-[48/31] h-auto w-full border border-white/10 object-cover"
+                    />
+                  </div>
+
+                  <div className={reverse ? "lg:order-1" : ""}>
+                    <p className="font-mono text-xs font-extrabold uppercase text-yoink-orange">
+                      {feature.eyebrow}
+                    </p>
+                    <h3 className="mt-4 font-display text-4xl font-black leading-none text-white sm:text-5xl">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-5 max-w-xl text-lg leading-8 text-yoink-ash">
+                      {feature.body}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+      <div className="orange-rule" />
+
+      <section className="bg-white/[0.025] px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading title="Different from..." />
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <SectionIntro
+              kicker="Different from..."
+              title="Same video. Sharper workflow."
+            />
+            <p className="max-w-md text-lg leading-8 text-yoink-ash">
+              Yoink is not trying to be your notes app, SEO dashboard, or AI
+              walled garden. It just gets the video into the tool you already
+              trust.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {comparisons.map((comparison) => (
               <article
-                key={comparison}
-                className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm"
+                key={comparison.competitor}
+                className="group min-w-0 border border-white/12 bg-yoink-black p-6 transition hover:-translate-y-1 hover:border-yoink-orange hover:shadow-brutal"
+                aria-label={comparison.full}
               >
-                <p className="text-xl font-black leading-8 text-yoink-black">
-                  {comparison}
+                <p className="font-mono text-xs font-extrabold uppercase text-white/45">
+                  Like {comparison.competitor}
+                </p>
+                <div className="mt-8 font-display text-3xl font-black leading-none lg:text-4xl">
+                  <span className="block break-words text-white/35">
+                    {comparison.competitor}
+                  </span>
+                  <span className="mt-2 block text-yoink-orange">/ Yoink</span>
+                </div>
+                <p className="mt-8 text-xl font-bold leading-8 text-white">
+                  but {comparison.copy}
                 </p>
               </article>
             ))}
@@ -397,52 +507,60 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-neutral-200 bg-yoink-black px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-10">
+      <div className="orange-rule" />
+
+      <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="How it works"
+          <SectionIntro
+            kicker="The whole trick"
             title="Three moves from video to prompt-ready context."
-            tone="dark"
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {steps.map(({ title, body, Icon }, index) => (
-              <article
-                key={title}
-                className="rounded-lg border border-white/15 bg-white/[0.04] p-6"
-              >
-                <div className="flex items-center justify-between gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-white text-yoink-black">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <span className="text-sm font-black text-white/55">
-                    0{index + 1}
-                  </span>
+              <article key={title} className="relative border-t border-white/15 pt-6">
+                <div className="font-mono text-[104px] font-extrabold leading-[0.78] text-yoink-orange sm:text-[128px] lg:text-[144px]">
+                  0{index + 1}
                 </div>
-                <h3 className="mt-8 text-2xl font-black">{title}</h3>
-                <p className="mt-3 leading-7 text-white/70">{body}</p>
+                <div className="mt-8 flex h-12 w-12 items-center justify-center bg-white text-yoink-black">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-6 font-display text-3xl font-black text-white">
+                  {title}
+                </h3>
+                <p className="mt-3 text-lg leading-8 text-yoink-ash">{body}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-        <div className="mx-auto flex max-w-5xl flex-col gap-8 border-y border-neutral-200 py-12 md:flex-row md:items-center md:justify-between">
+      <div className="orange-rule" />
+
+      <section className="relative px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+        <Image
+          src="/logo-mark-color.png"
+          alt=""
+          width={180}
+          height={180}
+          className="pointer-events-none absolute bottom-10 right-8 h-28 w-28 rotate-12 opacity-20 sm:h-44 sm:w-44"
+        />
+        <div className="mx-auto grid max-w-6xl gap-10 border border-yoink-orange/45 bg-white/[0.035] p-6 sm:p-10 md:grid-cols-[0.8fr_1.2fr] md:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase text-yoink-black">
+            <p className="font-mono text-xs font-extrabold uppercase text-yoink-orange">
               Built by ReplayRyan
             </p>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-yoink-black sm:text-4xl">
+            <h2 className="mt-4 font-display text-4xl font-black leading-none text-white sm:text-5xl">
               AI-native tools for creator-operators.
             </h2>
           </div>
-          <p className="max-w-2xl text-lg leading-8 text-neutral-600">
-            ReplayRyan is a portfolio of practical AI-native tools for people
-            who make, publish, research, and operate in public. Yoink is built
-            for the moment when a video is useful, but the URL is not enough.{" "}
+          <p className="text-lg leading-8 text-yoink-ash">
+            I&apos;m Ryan. ReplayRyan is my portfolio of AI-native tools for
+            creators and marketers. Yoink is the first. It is built for the
+            moment when a video is useful, but the URL is not enough.{" "}
             <a
               href="https://ryanbiddy.com"
-              className="focus-ring rounded-sm font-bold text-yoink-black underline decoration-yoink-orange decoration-2 underline-offset-4"
+              className="focus-ring font-bold text-yoink-orange underline decoration-white decoration-2 underline-offset-4"
             >
               Visit ryanbiddy.com
             </a>
@@ -451,58 +569,53 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-neutral-50 px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl font-black leading-tight text-yoink-black sm:text-5xl">
-            Turn the next great video into usable AI context.
-          </h2>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={chromeWebStoreUrl}
-              className="focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md bg-yoink-orange px-6 py-3.5 text-base font-black text-yoink-black transition hover:bg-orange-500 sm:w-auto"
-            >
-              Install Yoink Free
-              <ArrowIcon className="h-5 w-5" />
-            </a>
-            <a
-              href="https://github.com/ryanbiddy/yoink"
-              className="focus-ring inline-flex w-full items-center justify-center rounded-md border border-neutral-300 px-6 py-3.5 text-base font-black text-yoink-black transition hover:border-neutral-500 sm:w-auto"
-            >
-              Open source on GitHub
-            </a>
+      <section className="bg-yoink-orange px-5 py-20 text-yoink-black sm:px-8 sm:py-24 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <p className="font-mono text-xs font-extrabold uppercase">
+            Stop feeding your AI starving links
+          </p>
+          <div className="mt-6 grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-end">
+            <h2 className="font-display text-5xl font-black leading-none sm:text-6xl lg:text-[88px]">
+              Turn the next great video into usable AI context.
+            </h2>
+            <div className="flex flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
+              <a
+                href={chromeWebStoreUrl}
+                className="focus-ring inline-flex items-center justify-center gap-2 bg-yoink-black px-6 py-4 font-mono text-sm font-extrabold uppercase text-white shadow-[6px_6px_0_#FFFFFF] transition hover:-translate-y-1 hover:shadow-[9px_9px_0_#FFFFFF]"
+              >
+                Install Yoink Free
+                <ArrowIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://github.com/ryanbiddy/yoink"
+                className="focus-ring inline-flex items-center justify-center border-2 border-yoink-black px-6 py-4 font-mono text-sm font-extrabold uppercase transition hover:-translate-y-1 hover:bg-white"
+              >
+                Open source on GitHub
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-neutral-200 px-5 py-8 sm:px-8 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
-          <Image
-            src="/logo-dark.png"
-            alt="Yoink"
-            width={104}
-            height={31}
-            className="h-8 w-auto self-start"
-          />
-          <nav aria-label="Footer links" className="flex flex-wrap gap-4">
-            <Link className="focus-ring rounded-sm hover:text-yoink-black" href="/privacy">
+      <footer className="border-t border-white/10 px-5 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 text-sm text-yoink-ash sm:flex-row sm:items-center sm:justify-between">
+          <Link href="/" aria-label="Yoink home" className="focus-ring rounded-sm">
+            <BrandLockup small />
+          </Link>
+          <nav aria-label="Footer links" className="flex flex-wrap gap-4 font-mono text-xs uppercase">
+            <Link className="focus-ring hover:text-yoink-orange" href="/privacy">
               Privacy
             </Link>
             <a
-              className="focus-ring rounded-sm hover:text-yoink-black"
+              className="focus-ring hover:text-yoink-orange"
               href="https://github.com/ryanbiddy/yoink"
             >
               GitHub
             </a>
-            <a
-              className="focus-ring rounded-sm hover:text-yoink-black"
-              href="https://x.com/ryanbiddy"
-            >
+            <a className="focus-ring hover:text-yoink-orange" href="https://x.com/ryanbiddy">
               X
             </a>
-            <a
-              className="focus-ring rounded-sm hover:text-yoink-black"
-              href="mailto:ryan@ryanbiddy.com"
-            >
+            <a className="focus-ring hover:text-yoink-orange" href="mailto:ryan@ryanbiddy.com">
               Email
             </a>
           </nav>

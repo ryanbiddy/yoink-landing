@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   --yoink-black: #0a0a0a;
   --yoink-orange: #ea580c;
+  --yoink-ash: #a3a3a3;
 }
 
 * {
@@ -13,32 +14,78 @@
 }
 
 html {
-  background: #ffffff;
+  background: var(--yoink-black);
 }
 
 body {
   min-height: 100vh;
   margin: 0;
-  background: #ffffff;
-  color: var(--yoink-black);
+  background: var(--yoink-black);
+  color: #ffffff;
   text-rendering: geometricPrecision;
 }
 
 a {
   color: inherit;
+  cursor: pointer;
   text-decoration: none;
 }
 
 ::selection {
-  background: rgba(234, 88, 12, 0.18);
+  background: rgba(234, 88, 12, 0.36);
+  color: #ffffff;
 }
 
-.surface-grid {
+.dark-grid {
   background-image:
-    linear-gradient(to right, rgba(10, 10, 10, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(10, 10, 10, 0.055) 1px, transparent 1px);
-  background-size: 36px 36px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
   background-position: center top;
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0.2;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.045) 0,
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+.orange-rule {
+  height: 3px;
+  width: 100%;
+  background: var(--yoink-orange);
+}
+
+.marker-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.marker-underline::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.05em;
+  left: 0;
+  z-index: -1;
+  height: 0.18em;
+  content: "";
+  background: var(--yoink-orange);
+  transform: rotate(-1deg);
+  transform-origin: left center;
 }
 
 .focus-ring {
