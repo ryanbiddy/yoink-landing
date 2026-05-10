@@ -151,39 +151,24 @@ function YouTubeStepVisual() {
 
 function YoinkButtonVisual() {
   return (
-    <div className="relative w-full max-w-[270px] overflow-hidden border border-white/12 bg-[#111] p-3">
-      <div className="flex items-center gap-2 border-b border-white/10 pb-3">
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-bold text-black">
-          AI
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-xs font-semibold text-white">
-            AI Engineer
-          </p>
-          <p className="text-[9px] uppercase tracking-[0.12em] text-[#8a8a8a]">
-            512K subscribers
-          </p>
-        </div>
-        <span className="shrink-0 bg-white px-2.5 py-1 text-[9px] font-bold uppercase text-black">
-          Subscribe
-        </span>
-      </div>
-
-      <div className="mt-3 flex items-center gap-1.5 text-[9px] font-semibold text-white">
-        <span className="shrink-0 border border-white/12 px-2 py-1">
-          19K likes
-        </span>
-        <span className="shrink-0 border border-white/12 px-2 py-1">Share</span>
-        <span className="relative shrink-0 border border-yoink-orange bg-yoink-orange/10 px-2 py-1 text-yoink-orange shadow-[0_0_0_2px_rgba(234,88,12,0.3)]">
-          <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[#22c55e]" />
-          Yoink
-        </span>
-        <span className="shrink-0 border border-white/12 px-2 py-1">Ask</span>
-      </div>
-
-      <div className="absolute bottom-3 right-5 flex items-center gap-1 text-yoink-orange">
-        <span className="h-px w-8 bg-yoink-orange" />
-        <span className="h-2 w-2 rotate-45 border-r border-t border-yoink-orange" />
+    <div className="relative h-[92px] w-full max-w-[270px] overflow-hidden border border-white/12 bg-[#111]">
+      <Image
+        src="/youtube-yoink-controls.png"
+        alt="Yoink button inside the YouTube video controls row."
+        fill
+        sizes="270px"
+        className="object-cover"
+        style={{ objectPosition: "86% center" }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute left-[106px] top-[39px] h-[41px] w-[104px] rounded-full border border-yoink-orange shadow-[0_0_0_3px_rgba(234,88,12,0.32),0_0_28px_rgba(234,88,12,0.9)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-2 right-8 h-px w-10 bg-yoink-orange shadow-[0_0_12px_rgba(234,88,12,0.9)]"
+      >
+        <span className="absolute -right-0.5 -top-[3px] h-2 w-2 rotate-45 border-r border-t border-yoink-orange" />
       </div>
     </div>
   );
