@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { AiAnalysisCarousel } from "../components/AiAnalysisCarousel";
+import { RoadmapWaitlistSection } from "../components/RoadmapWaitlistSection";
 
 const githubUrl = "https://github.com/ryanbiddy/yoink";
 const windowsDownloadUrl =
@@ -582,6 +583,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="stripe-divider" />
+
+      <RoadmapWaitlistSection />
 
       <div className="stripe-divider" />
 
