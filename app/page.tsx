@@ -169,24 +169,12 @@ function CorpusLabelsVisual() {
 function AiLogosVisual() {
   const logos = [
     {
-      src: "/logo-claude-mark.jpg",
+      src: "/claude-logo-original.jpg",
       alt: "Claude",
-      className: "scale-110",
     },
     {
-      src: "/logo-chatgpt-mark.webp",
+      src: "/chatgpt-logo-original.webp",
       alt: "ChatGPT",
-      className: "scale-[1.12]",
-    },
-    {
-      src: "/logo-claude-mark.jpg",
-      alt: "Claude Code",
-      className: "scale-110",
-    },
-    {
-      src: "/logo-chatgpt-mark.webp",
-      alt: "Codex",
-      className: "scale-[1.12]",
     },
   ];
 
@@ -194,24 +182,24 @@ function AiLogosVisual() {
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
       <div
         aria-hidden="true"
-        className="absolute left-6 right-6 top-1/2 h-px bg-gradient-to-r from-transparent via-yoink-orange/50 to-transparent"
+        className="absolute left-10 right-10 top-1/2 h-px bg-gradient-to-r from-transparent via-yoink-orange/60 to-transparent"
       />
-      <div className="relative flex items-center justify-center gap-2 sm:gap-3">
+      <div className="relative flex items-center justify-center gap-5">
         {logos.map((logo, index) => (
           <div
-            key={`${logo.alt}-${index}`}
-            className={`flex h-11 w-11 items-center justify-center overflow-hidden border bg-black shadow-[0_0_24px_rgba(0,0,0,0.45)] ${
-              index % 2 === 0
-                ? "border-yoink-orange/70 shadow-[0_0_20px_rgba(234,88,12,0.22)]"
+            key={logo.alt}
+            className={`flex h-24 w-24 items-center justify-center overflow-hidden border bg-black p-1.5 shadow-[0_0_28px_rgba(0,0,0,0.5)] ${
+              index === 0
+                ? "border-yoink-orange/70 shadow-[0_0_24px_rgba(234,88,12,0.2)]"
                 : "border-white/25"
             }`}
           >
             <Image
               src={logo.src}
               alt={logo.alt}
-              width={64}
-              height={64}
-              className={`h-full w-full object-cover ${logo.className}`}
+              width={96}
+              height={96}
+              className="h-full w-full object-contain"
             />
           </div>
         ))}
