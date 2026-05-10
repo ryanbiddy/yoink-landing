@@ -19,7 +19,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
         display: [
-          "var(--font-space-grotesk)",
+          "var(--font-geist)",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
