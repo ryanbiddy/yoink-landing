@@ -7,6 +7,38 @@ const chromeWebStoreUrl =
 
 const githubUrl = "https://github.com/ryanbiddy/yoink";
 
+const journeySteps = [
+  {
+    number: "01",
+    title: "Find a video",
+    description: "Any YouTube video, channel, or playlist.",
+    image: "/step-find-video.png",
+    alt: "Simplified YouTube video page mockup.",
+  },
+  {
+    number: "02",
+    title: "Click Yoink",
+    description: "One button under every video. Right-click thumbnails too.",
+    image: "/step-click-yoink.png",
+    alt: "Close-up mockup of the Yoink button with the orange Y mark.",
+  },
+  {
+    number: "03",
+    title: "Get the corpus",
+    description:
+      "Transcript, screenshots, comments, channel context - already structured.",
+    image: "/step-corpus.png",
+    alt: "Structured corpus document mockup with section labels.",
+  },
+  {
+    number: "04",
+    title: "Paste anywhere",
+    description: "Claude, ChatGPT, Notion - wherever you're working.",
+    image: "/step-paste-anywhere.png",
+    alt: "Simple Claude, ChatGPT, and Notion destination icons.",
+  },
+];
+
 const youtubePlaceholder = `
 <!doctype html>
 <html lang="en">
@@ -114,6 +146,61 @@ function ArrowIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function LockIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M7 10V7a5 5 0 0 1 10 0v3"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M6 10h12v10H6V10Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 14v2"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function ComputerIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4 5h16v11H4V5Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 20h6M12 16v4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function GitHubIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M12 3.6a8.4 8.4 0 0 0-2.7 16.35c.42.08.57-.18.57-.4v-1.42c-2.33.5-2.82-1-2.82-1-.38-.96-.93-1.22-.93-1.22-.76-.52.06-.5.06-.5.84.06 1.28.86 1.28.86.75 1.27 1.95.9 2.42.69.08-.54.3-.9.54-1.11-1.86-.21-3.82-.93-3.82-4.15 0-.91.33-1.66.86-2.25-.09-.21-.37-1.07.08-2.22 0 0 .7-.23 2.3.86A7.9 7.9 0 0 1 12 7.8c.71 0 1.43.1 2.1.29 1.6-1.09 2.3-.86 2.3-.86.45 1.15.17 2.01.08 2.22.54.59.86 1.34.86 2.25 0 3.23-1.96 3.93-3.83 4.14.3.26.57.78.57 1.57v2.14c0 .22.15.49.58.4A8.4 8.4 0 0 0 12 3.6Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 function BrandLockup({ small = false }: { small?: boolean }) {
   return (
     <span className="inline-flex items-center gap-3">
@@ -180,7 +267,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 max-w-3xl text-xl leading-8 text-yoink-ash sm:text-2xl sm:leading-10">
-              Yoink any YouTube video into Claude or ChatGPT - full transcript,
+              Yoink any YouTube video into Claude and ChatGPT - full transcript,
               screenshots, and metadata in one structured doc.
             </p>
 
@@ -218,31 +305,114 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
+      <section className="px-5 py-24 sm:px-8 sm:py-32 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="mb-5 font-mono text-xs font-extrabold uppercase text-yoink-orange">
-              Show, don&apos;t tell
-            </p>
             <h2 className="font-display text-5xl font-black leading-none text-white sm:text-6xl lg:text-[84px]">
-              Look at what Claude sees.
+              From YouTube to your AI in one click.
             </h2>
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-yoink-ash">
+              No copy-pasting. No tab switching. No lost context.
+            </p>
           </div>
 
-          <div className="mx-auto mt-14 max-w-6xl border border-yoink-orange/50 bg-white/[0.035] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.55)] sm:p-4 lg:mt-20">
+          <div className="relative mt-14 lg:mt-20">
+            <div className="absolute left-8 right-8 top-[84px] hidden h-px bg-yoink-orange/55 lg:block" />
+            <div className="grid gap-6 lg:grid-cols-4">
+              {journeySteps.map((step) => (
+                <article
+                  key={step.number}
+                  className="relative border border-yoink-orange/45 bg-white/[0.035] p-5 shadow-[0_22px_70px_rgba(0,0,0,0.4)]"
+                >
+                  <div className="flex items-baseline gap-4 lg:block">
+                    <p className="font-mono text-5xl font-extrabold leading-none text-yoink-orange">
+                      {step.number}
+                    </p>
+                    <h3 className="font-display text-2xl font-black text-white lg:mt-5">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="mt-3 min-h-12 text-base leading-6 text-yoink-ash">
+                    {step.description}
+                  </p>
+                  <Image
+                    src={step.image}
+                    alt={step.alt}
+                    width={820}
+                    height={560}
+                    loading="eager"
+                    className="mt-6 h-auto w-full border border-white/10"
+                  />
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-yoink-orange/80 px-5 py-24 sm:px-8 sm:py-28 lg:px-10">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="font-display text-5xl font-black leading-none text-white sm:text-6xl lg:text-[76px]">
+            Your research stays on your machine.
+          </h2>
+          <p className="mx-auto mt-6 max-w-5xl text-lg leading-8 text-yoink-ash sm:text-xl">
+            Yoink runs locally on your computer. No cloud uploads. No accounts.
+            No tracking. Your videos, transcripts, and analyses never leave your
+            hardware unless you choose to send them somewhere.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row sm:flex-wrap">
+            <p className="inline-flex items-center gap-2 font-mono text-sm font-extrabold uppercase text-white">
+              <LockIcon className="h-5 w-5 text-yoink-orange" />
+              No accounts required
+            </p>
+            <p className="inline-flex items-center gap-2 font-mono text-sm font-extrabold uppercase text-white">
+              <ComputerIcon className="h-5 w-5 text-yoink-orange" />
+              Runs entirely on your computer
+            </p>
+            <a
+              href={githubUrl}
+              className="focus-ring inline-flex items-center gap-2 font-mono text-sm font-extrabold uppercase text-white transition hover:text-yoink-orange"
+            >
+              <GitHubIcon className="h-5 w-5 text-yoink-orange" />
+              Open source on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-24 sm:px-8 sm:py-32 lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div>
+            <h2 className="font-display text-5xl font-black leading-none text-white sm:text-6xl lg:text-[76px]">
+              Built for deep research.
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-yoink-ash sm:text-xl">
+              Yoink was built for the people who actually work with YouTube
+              content all day - content strategists decoding what&apos;s working
+              in their niche, founders researching competitors, AI builders
+              prototyping with real source material, creators studying patterns
+              in their space.
+            </p>
+            <p className="mt-8 text-lg leading-8 text-white">
+              A creator studying how others in their niche structure videos can
+              yoink an entire channel in minutes. The corpus goes straight to
+              Claude and ChatGPT, who pull patterns across hooks, pacing, and
+              storytelling structure. What used to take hours of manual
+              note-taking now happens in one paste.
+            </p>
+          </div>
+
+          <div className="border border-yoink-orange/45 bg-white/[0.035] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.55)] sm:p-4">
             <Image
-              src="/yoink-corpus-output.png"
-              alt="Placeholder rendering of a structured yoink.md markdown corpus."
+              src="/usecase-research-prompt.png"
+              alt="Corpus pasted into Claude and ChatGPT with a visible research prompt."
               width={1440}
-              height={960}
+              height={920}
+              loading="eager"
               className="h-auto w-full border border-white/10"
             />
           </div>
-
-          <p className="mx-auto mt-8 max-w-4xl text-center text-lg leading-8 text-yoink-ash sm:text-xl">
-            Every yoink: transcript, screenshots, comments, channel context,
-            metadata. Already structured.
-          </p>
         </div>
       </section>
 

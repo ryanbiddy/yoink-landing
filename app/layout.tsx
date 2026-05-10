@@ -18,7 +18,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 const title = "Yoink - The missing layer between YouTube and your AI";
 const description =
-  "Yoink any YouTube video into Claude or ChatGPT with the full transcript, screenshots, and metadata in one structured doc.";
+  "Yoink any YouTube video into Claude and ChatGPT with the full transcript, screenshots, and metadata in one structured doc.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yoink.video"),
