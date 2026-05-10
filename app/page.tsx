@@ -151,24 +151,19 @@ function YouTubeStepVisual() {
 
 function YoinkButtonVisual() {
   return (
-    <div className="relative h-[92px] w-full max-w-[270px] overflow-hidden border border-white/12 bg-[#111]">
-      <Image
-        src="/youtube-yoink-controls.png"
-        alt="Yoink button inside the YouTube video controls row."
-        fill
-        sizes="270px"
-        className="object-cover"
-        style={{ objectPosition: "86% center" }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute left-[106px] top-[39px] h-[41px] w-[104px] rounded-full border border-yoink-orange shadow-[0_0_0_3px_rgba(234,88,12,0.32),0_0_28px_rgba(234,88,12,0.9)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-2 right-8 h-px w-10 bg-yoink-orange shadow-[0_0_12px_rgba(234,88,12,0.9)]"
-      >
-        <span className="absolute -right-0.5 -top-[3px] h-2 w-2 rotate-45 border-r border-t border-yoink-orange" />
+    <div className="flex h-full w-full items-center justify-center overflow-hidden">
+      <div className="relative h-[60px] w-[260px] max-w-full overflow-hidden border border-white/18 bg-[#111]">
+        <Image
+          src="/youtube-yoink-controls-crop.png"
+          alt="Yoink button inside the YouTube video controls row."
+          width={260}
+          height={60}
+          className="h-auto w-full"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-[70px] top-[6px] h-[48px] w-[112px] rounded-full border-2 border-yoink-orange shadow-[0_0_0_2px_rgba(234,88,12,0.38),0_0_16px_rgba(234,88,12,0.92),inset_0_0_12px_rgba(234,88,12,0.25)]"
+        />
       </div>
     </div>
   );
