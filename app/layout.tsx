@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter } from "next/font/google";
 import Script from "next/script";
+import { siteDescription, siteTitle, siteUrl } from "./site";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,17 +17,29 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-const title = "Yoink - The missing layer between YouTube and your AI";
-const description =
-  "Yoink any YouTube video into Claude and ChatGPT with the full transcript, screenshots, and metadata in one structured doc.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yoink.video"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: title,
+    default: siteTitle,
     template: "%s | Yoink",
   },
-  description,
+  description: siteDescription,
+  applicationName: "Yoink",
+  authors: [{ name: "Ryan Biddy", url: "https://ryanbiddy.com" }],
+  creator: "Ryan Biddy",
+  publisher: "ReplayRyan",
+  keywords: [
+    "Yoink",
+    "ReplayRyan",
+    "YouTube transcript to AI",
+    "YouTube to Claude",
+    "YouTube to ChatGPT",
+    "AI research tool",
+    "Chrome extension",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   icons: [
     {
       rel: "icon",
@@ -36,9 +49,9 @@ export const metadata: Metadata = {
     },
   ],
   openGraph: {
-    title,
-    description,
-    url: "https://yoink.video",
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
     siteName: "Yoink",
     images: [
       {
@@ -53,8 +66,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
+    title: siteTitle,
+    description: siteDescription,
     images: ["/og-image.png"],
   },
 };

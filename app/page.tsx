@@ -3,10 +3,12 @@ import Link from "next/link";
 import type { SVGProps } from "react";
 import { AiAnalysisCarousel } from "../components/AiAnalysisCarousel";
 import { RoadmapWaitlistSection } from "../components/RoadmapWaitlistSection";
-
-const githubUrl = "https://github.com/ryanbiddy/yoink";
-const windowsDownloadUrl =
-  "https://chromewebstore.google.com/detail/yoink/placeholder";
+import {
+  githubUrl,
+  siteDescription,
+  siteUrl,
+  windowsDownloadUrl,
+} from "./site";
 
 const steps = [
   {
@@ -52,6 +54,75 @@ const useCases = [
     Icon: FilterIcon,
   },
 ];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "ReplayRyan",
+      url: "https://ryanbiddy.com",
+      founder: {
+        "@type": "Person",
+        name: "Ryan Biddy",
+        url: "https://ryanbiddy.com",
+      },
+      sameAs: ["https://x.com/ryanbiddy", githubUrl],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Yoink",
+      url: siteUrl,
+      description: siteDescription,
+      publisher: {
+        "@id": `${siteUrl}/#organization`,
+      },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/#software`,
+      name: "Yoink",
+      alternateName: "Yoink by ReplayRyan",
+      applicationCategory: "BrowserApplication",
+      applicationSubCategory: "Chrome extension",
+      operatingSystem: "Windows, macOS",
+      browserRequirements: "Requires Google Chrome or a Chromium browser.",
+      softwareVersion: "1.0",
+      url: siteUrl,
+      image: `${siteUrl}/og-image.png`,
+      screenshot: [
+        `${siteUrl}/screenshot-1.png`,
+        `${siteUrl}/screenshot-2.png`,
+        `${siteUrl}/screenshot-5.png`,
+      ],
+      codeRepository: githubUrl,
+      downloadUrl: windowsDownloadUrl,
+      isAccessibleForFree: true,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      creator: {
+        "@id": `${siteUrl}/#organization`,
+      },
+      featureList: [
+        "Turns YouTube videos into structured context for Claude and ChatGPT",
+        "Exports transcripts, screenshots, comments, channel context, and metadata",
+        "Runs locally with no accounts or cloud uploads",
+        "Creates prompt-ready markdown corpora for AI research workflows",
+      ],
+      description: siteDescription,
+    },
+  ],
+};
+
+const structuredDataJson = JSON.stringify(structuredData).replace(
+  /</g,
+  "\\u003c",
+);
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -348,6 +419,7 @@ function DownloadButtons({ inverse = false }: { inverse?: boolean }) {
     <div className="flex flex-col gap-3 sm:flex-row">
       <button
         type="button"
+        disabled
         aria-disabled="true"
         className={`inline-flex cursor-not-allowed items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase ${macBase}`}
       >
@@ -383,6 +455,10 @@ function DemoFrame() {
 export default function Home() {
   return (
     <main className="bg-yoink-black text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: structuredDataJson }}
+      />
       <section className="px-5 py-6 sm:px-8 lg:px-10">
         <header className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="/" aria-label="Yoink home" className="focus-ring rounded-sm">

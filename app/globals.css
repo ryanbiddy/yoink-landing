@@ -31,6 +31,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 ::selection {
   background: rgba(234, 88, 12, 0.36);
   color: #ffffff;

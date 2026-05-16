@@ -11,6 +11,19 @@ npm run dev
 
 The site is built with Next.js 14, TypeScript, and Tailwind CSS for Vercel.
 
+## Search and GEO basics
+
+Set the canonical production URL in Vercel so metadata, Open Graph, JSON-LD,
+`robots.txt`, and `sitemap.xml` all point at the same place:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
+```
+
+If the variable is not set, the site falls back to the current Vercel URL.
+Before launch, make sure this is not pointed at a domain owned by another Yoink
+product.
+
 ## Roadmap waitlists
 
 The "What's coming next" section posts feature-specific signups to
