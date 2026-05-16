@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter } from "next/font/google";
 import Script from "next/script";
-import { siteDescription, siteTitle, siteUrl } from "./site";
+import { plausibleDomain, siteDescription, siteTitle, siteUrl } from "./site";
 import "./globals.css";
 
 const inter = Inter({
@@ -84,12 +84,14 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased">
         {children}
-        <Script
-          defer
-          data-domain="yoink.video"
-          src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
-        />
+        {plausibleDomain ? (
+          <Script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );

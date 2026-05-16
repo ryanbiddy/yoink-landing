@@ -18,11 +18,12 @@ Set the canonical production URL in Vercel so metadata, Open Graph, JSON-LD,
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-production-domain.example
 ```
 
 If the variable is not set, the site falls back to the current Vercel URL.
 Before launch, make sure this is not pointed at a domain owned by another Yoink
-product.
+product. Plausible is only loaded when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set.
 
 ## Roadmap waitlists
 

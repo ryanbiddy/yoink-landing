@@ -14,3 +14,5 @@ export const siteTitle =
 
 export const siteDescription =
   "Yoink any YouTube video into Claude and ChatGPT with the full transcript, screenshots, comments, channel context, and metadata in one structured doc.";
+
+export const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || "";
