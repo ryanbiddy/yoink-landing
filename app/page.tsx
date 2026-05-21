@@ -89,6 +89,29 @@ const v2Highlights = [
   },
 ];
 
+const positioningCards = [
+  {
+    title: "One button on the video",
+    body: "Capture context where you find it: the YouTube page, playlist, or thumbnail. No dashboard upload loop.",
+    Icon: PlayOutlineIcon,
+  },
+  {
+    title: "Beyond transcripts",
+    body: "Yoink packages the transcript, screenshots, comments, metadata, channel context, and citations into one markdown corpus.",
+    Icon: DocumentIcon,
+  },
+  {
+    title: "Local by default",
+    body: "Your research library stays on your machine. AI analysis is opt-in and bring-your-own key.",
+    Icon: LockIcon,
+  },
+  {
+    title: "Agent-native",
+    body: "MCP gives agents 13 tools. The Operator Skill teaches the workflow: hooks, comments, citations, and cross-corpus search.",
+    Icon: CodeIcon,
+  },
+];
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -159,7 +182,8 @@ const structuredData = {
         "@id": `${siteUrl}/#organization`,
       },
       featureList: [
-        "Chrome extension for one-click YouTube-to-AI capture",
+        "Chrome extension for one-click YouTube-to-AI capture from the video page",
+        "Structured corpus output with transcripts, screenshots, comments, metadata, channel context, and citations",
         "Local MCP server with 13 callable tools for AI agents",
         "Portable Operator Skill for Claude, Cursor, OpenClaw, and Hermes",
         "Yoink Memory searchable library with full-text search",
@@ -429,6 +453,26 @@ function CodeIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function DocumentIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6 3h8l4 4v14H6V3Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 3v5h4M9 12h6M9 16h6"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function SparkIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -566,13 +610,13 @@ export default function Home() {
           <Eyebrow>github.com/ryanbiddy/yoink</Eyebrow>
           <h1 className="max-w-6xl font-display text-6xl font-bold leading-[1.03] text-white sm:text-7xl md:text-[96px] lg:text-[118px]">
             <span className="text-yoink-orange">Yoink</span> turns YouTube into
-            prompt-ready context for any AI.
+            local context your AI can actually use.
           </h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
-            Use the Chrome extension when you want one-click capture for Claude
-            and ChatGPT, the local MCP server when your agent needs 13 callable
-            YouTube tools, or the Operator Skill when Claude, Cursor, OpenClaw,
-            or Hermes needs the workflow preloaded.
+            A one-click capture button for Claude and ChatGPT, plus a local MCP
+            server and Operator Skill for agents. Yoink turns transcripts,
+            screenshots, comments, metadata, and channel context into a
+            structured corpus that stays on your machine.
           </p>
           <div className="mt-10">
             <DownloadButtons />
@@ -594,7 +638,34 @@ export default function Home() {
 
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden border border-yoink-orange bg-yoink-orange p-6 text-yoink-black sm:p-8 lg:p-12">
+          <Eyebrow>Positioning</Eyebrow>
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <h2 className="max-w-5xl font-display text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[96px]">
+              Not another transcript button.
+            </h2>
+            <p className="text-xl leading-9 text-[#a3a3a3]">
+              Transcript extraction is table stakes. Yoink wins on the layer
+              around it: one-click capture from the video page, local ownership
+              of the corpus, structured operator analysis, and agent tools that
+              can search, cite, and compare your library.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {positioningCards.map(({ title, body, Icon }) => (
+              <article key={title} className="border border-white/12 p-6">
+                <Icon className="h-9 w-9 text-yoink-orange" />
+                <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
+                  {title}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                  {body}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="relative mt-16 overflow-hidden border border-yoink-orange bg-yoink-orange p-6 text-yoink-black sm:p-8 lg:p-12">
             <div
               aria-hidden="true"
               className="absolute inset-x-0 top-0 h-4 bg-[repeating-linear-gradient(135deg,rgba(10,10,10,0.28)_0,rgba(10,10,10,0.28)_2px,transparent_2px,transparent_12px)]"
@@ -648,7 +719,7 @@ export default function Home() {
             </div>
             <dl className="grid gap-5 text-sm leading-7 text-[#a3a3a3] md:grid-cols-2">
               {[
-                ["What is Yoink?", "A local-first YouTube-to-AI corpus tool for Claude, ChatGPT, and AI agents."],
+                ["What is Yoink?", "A local-first YouTube-to-AI corpus tool, not a transcript-only summarizer."],
                 ["Primary interfaces", "Chrome extension, local MCP server, and portable Operator Skill."],
                 ["Agent tools", "13 MCP tools for extraction, search, comments, hooks, citations, health, and entity mentions."],
                 ["Privacy model", "Core extraction runs locally. AI features are opt-in and bring-your-own Anthropic key."],

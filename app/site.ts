@@ -1,7 +1,7 @@
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.SITE_URL ||
-  "https://yoink-landing-five.vercel.app"
+  "https://ryanbiddy.com/yoink"
 ).replace(/\/$/, "");
 
 export const githubUrl = "https://github.com/ryanbiddy/yoink";
@@ -21,9 +21,9 @@ export const agentDocsUrl =
   "https://github.com/ryanbiddy/yoink/blob/main/docs/v2-mcp.md";
 
 export const siteTitle =
-  "Yoink v2 - The YouTube layer for any AI agent";
+  "Yoink v2 - Local-first YouTube context for AI agents";
 
 export const siteDescription =
-  "Yoink turns YouTube into prompt-ready context through a Chrome extension, local MCP server, and portable Operator Skill for Claude, ChatGPT, Cursor, OpenClaw, and Hermes.";
+  "Yoink is the local-first YouTube research layer: a Chrome extension, local MCP server, and Operator Skill that turn videos into structured corpora for Claude, ChatGPT, Cursor, and agents.";
 
 export const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || "";

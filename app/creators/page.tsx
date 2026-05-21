@@ -13,14 +13,15 @@ import {
   SparkIcon,
   StripeDivider,
 } from "../../components/SitePrimitives";
+import { siteUrl } from "../site";
 import { starterPrompts } from "../v2-data";
 
 export const metadata: Metadata = {
   title: "Yoink for Creators",
   description:
-    "Use Yoink to turn YouTube videos into prompt-ready transcripts, screenshots, comments, and channel context for Claude and ChatGPT.",
+    "Use Yoink to turn YouTube videos into structured transcripts, screenshots, comments, metadata, and channel context for Claude and ChatGPT.",
   alternates: {
-    canonical: "/creators",
+    canonical: `${siteUrl}/creators`,
   },
 };
 

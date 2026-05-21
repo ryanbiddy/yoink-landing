@@ -35,13 +35,15 @@ export const metadata: Metadata = {
     "YouTube to Claude",
     "YouTube to ChatGPT",
     "AI research tool",
+    "local-first YouTube research",
+    "YouTube MCP server",
     "Chrome extension",
     "MCP server",
     "Operator Skill",
     "Yoink Memory",
   ],
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
   },
   icons: [
     {

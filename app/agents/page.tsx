@@ -10,15 +10,15 @@ import {
   SparkIcon,
   StripeDivider,
 } from "../../components/SitePrimitives";
-import { githubUrl } from "../site";
+import { githubUrl, siteUrl } from "../site";
 import { mcpTools } from "../v2-data";
 
 export const metadata: Metadata = {
   title: "Yoink for AI Agents",
   description:
-    "Yoink exposes 13 local MCP tools that let Claude Desktop, Cursor, and other agents extract, search, cite, and analyze YouTube context.",
+    "Yoink exposes 13 local MCP tools and an Operator Skill that let Claude Desktop, Cursor, and other agents extract, search, cite, and analyze YouTube context.",
   alternates: {
-    canonical: "/agents",
+    canonical: `${siteUrl}/agents`,
   },
 };
 

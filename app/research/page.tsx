@@ -14,13 +14,14 @@ import {
   SparkIcon,
   StripeDivider,
 } from "../../components/SitePrimitives";
+import { siteUrl } from "../site";
 
 export const metadata: Metadata = {
   title: "Yoink for Research",
   description:
-    "Use Yoink to build a private searchable corpus of YouTube videos for research, competitive intel, content strategy, and podcast prep.",
+    "Use Yoink to build a private searchable corpus of YouTube videos for research, competitive intel, content strategy, and creator analysis.",
   alternates: {
-    canonical: "/research",
+    canonical: `${siteUrl}/research`,
   },
 };
 

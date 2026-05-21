@@ -17,6 +17,8 @@ Operator Skill raw file: ${operatorSkillUrl}
 
 Yoink turns YouTube videos, channels, and playlists into structured markdown corpora for Claude, ChatGPT, Cursor, OpenClaw, Hermes, and other AI tools.
 
+Yoink is positioned as a structured operator layer, not a transcript-only extension, a cloud notebook, or a bare MCP primitive. It combines one-click capture on the YouTube page, local corpus ownership, 13 MCP tools, and an Operator Skill.
+
 Core output includes:
 - transcript
 - screenshots

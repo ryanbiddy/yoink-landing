@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { siteUrl } from "../site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy policy for Yoink, a local-only Chrome extension for structuring YouTube video context.",
   alternates: {
-    canonical: "/privacy",
+    canonical: `${siteUrl}/privacy`,
   },
 };
 
