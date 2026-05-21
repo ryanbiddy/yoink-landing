@@ -11,17 +11,17 @@ const roadmapFeatures = [
     Icon: AppleRoadmapIcon,
   },
   {
-    id: "channel-decoder",
-    title: "Channel Decoder",
+    id: "multi-platform",
+    title: "More video platforms",
     description:
-      "Yoink an entire YouTube channel at once. Get a structured corpus of every video - perfect for competitive research.",
+      "YouTube depth comes first. Vimeo, Twitch VODs, conference talks, and other high-signal platforms are candidates after v2 stabilizes.",
     Icon: LayersIcon,
   },
   {
-    id: "niche-corpus",
-    title: "Niche Corpus",
+    id: "projects",
+    title: "Send to Projects",
     description:
-      "Combine multiple channels and videos into one master corpus. Compare patterns across an entire content niche in your niche.",
+      "A selective send-to-Project workflow for Claude and ChatGPT Projects, without pretending Projects are a full research database.",
     Icon: GridIcon,
   },
   {
@@ -182,8 +182,8 @@ export function RoadmapWaitlistSection() {
           What&apos;s coming to Yoink.
         </h2>
         <p className="mt-6 max-w-3xl text-xl leading-9 text-[#8a8a8a]">
-          Yoink v1 is just the start. Get early access to v2 features the day
-          they ship.
+          Yoink v2.0 is shipping now. These are future bets, not features hidden
+          behind a roadmap label.
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">

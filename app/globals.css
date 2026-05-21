@@ -23,6 +23,65 @@ body {
   background: var(--yoink-black);
   color: #ffffff;
   text-rendering: geometricPrecision;
+  overflow-x: hidden;
+}
+
+.max-w-7xl,
+.max-w-6xl,
+.max-w-5xl,
+.max-w-4xl,
+.max-w-3xl {
+  max-width: min(var(--tw-max-w, 100%), calc(100vw - 2.5rem));
+}
+
+.max-w-7xl {
+  --tw-max-w: 80rem;
+}
+
+.max-w-6xl {
+  --tw-max-w: 72rem;
+}
+
+.max-w-5xl {
+  --tw-max-w: 64rem;
+}
+
+.max-w-4xl {
+  --tw-max-w: 56rem;
+}
+
+.max-w-3xl {
+  --tw-max-w: 48rem;
+}
+
+@media (min-width: 640px) {
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: min(var(--tw-max-w, 100%), calc(100vw - 4rem));
+  }
+}
+
+@media (max-width: 639px) {
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: 17rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: min(var(--tw-max-w, 100%), calc(100vw - 5rem));
+  }
 }
 
 a {

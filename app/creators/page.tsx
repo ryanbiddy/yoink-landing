@@ -55,7 +55,7 @@ export default function CreatorsPage() {
         eyebrow="For creators"
         title="Stop watching videos on 2x to take notes."
         body="One click puts the full transcript, screenshots, comments, and channel context on your clipboard. Paste into Claude or ChatGPT. Ask anything."
-        primaryLabel="Install for Chrome"
+        primaryLabel="Download for Windows"
       />
 
       <StripeDivider />

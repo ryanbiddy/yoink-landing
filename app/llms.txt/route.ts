@@ -6,6 +6,7 @@ export function GET() {
   const body = `# Yoink
 
 Yoink v2 is a local-first YouTube-to-AI research tool by ReplayRyan.
+Positioning: Your bookmark that extracts everything to your LLMs - on the web or by your agents.
 
 Canonical site: ${siteUrl}
 GitHub source: ${githubUrl}
@@ -18,6 +19,11 @@ Operator Skill raw file: ${operatorSkillUrl}
 Yoink turns YouTube videos, channels, and playlists into structured markdown corpora for Claude, ChatGPT, Cursor, OpenClaw, Hermes, and other AI tools.
 
 Yoink is positioned as a structured operator layer, not a transcript-only extension, a cloud notebook, or a bare MCP primitive. It combines one-click capture on the YouTube page, local corpus ownership, 13 MCP tools, and an Operator Skill.
+
+There are three product paths:
+1. Browser path: click the Yoink button under a YouTube video and paste the clipboard corpus into Claude, ChatGPT, or another chat AI.
+2. Agent path: connect the local Model Context Protocol server so agents can call Yoink tools directly.
+3. Operator path: install the portable agentskills.io SKILL.md for citation discipline, hook autopsy mode, and Yoink taxonomy defaults.
 
 Core output includes:
 - transcript
@@ -33,6 +39,10 @@ Core output includes:
 2. Local helper server: runs on the user's machine and writes corpora to local disk.
 3. MCP server: exposes 13 local tools that agents can call directly.
 4. Operator Skill: portable SKILL.md that teaches agents how to use Yoink workflows.
+
+The Windows helper bundles Python, yt-dlp, ffmpeg, keyring, and the MCP SDK. It is required for extraction, local file writes, Yoink Memory, and MCP.
+
+Supported browser family: Chrome and Chromium-based browsers such as Edge, Brave, Comet, Opera GX, and Vivaldi.
 
 ## MCP Tools
 
@@ -70,7 +80,7 @@ curiosity_gap, question, contrarian, story_open, promise_list, demo, authority, 
 
 ## Privacy Model
 
-Core Yoink runs locally. There is no Yoink cloud account or server-side corpus database. Optional AI features use the user's own Anthropic API key and are opt-in.
+Core Yoink runs locally. There is no Yoink cloud account, telemetry, analytics, remote logging, or server-side corpus database. Optional AI features use the user's own Anthropic API key, stored by Windows Credential Manager, and are opt-in.
 `;
 
   return new Response(body, {

@@ -55,7 +55,7 @@ export default function ResearchPage() {
         eyebrow="For research"
         title="Build a private corpus of every video that matters in your space. Search it like text."
         body="Yoink plus the Library Index turns YouTube into a queryable knowledge base your AI can actually reason over."
-        primaryLabel="Install for Chrome"
+        primaryLabel="Download for Windows"
       />
 
       <StripeDivider />

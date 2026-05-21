@@ -76,8 +76,8 @@ export default function AgentsPage() {
       <PageHero
         eyebrow="For agents"
         title="13 MCP tools that turn your agent into a YouTube research analyst."
-        body="Local Model Context Protocol server. Stdio plus experimental HTTP JSON-RPC. Officially tested with Claude Desktop and Cursor. Free and open source."
-        primaryLabel="Install for Chrome"
+        body="Local Model Context Protocol server. Stdio plus experimental HTTP JSON-RPC. Launch-tested with Claude Desktop and Cursor, with the same config shape for ChatGPT Desktop, Continue, Cline, and other MCP clients."
+        primaryLabel="Download for Windows"
       />
 
       <StripeDivider />
@@ -147,7 +147,7 @@ export default function AgentsPage() {
           />
           <FeatureCard
             title="Operator Skill"
-            body="For clients that support portable skills, Yoink ships a drop-in skill that teaches the agent how to cite, compare, and analyze YouTube corpora without relearning the workflow."
+            body="For clients that support portable agentskills.io skills, Yoink ships a drop-in SKILL.md that teaches the agent how to cite, compare, and analyze YouTube corpora without relearning the workflow."
             Icon={SparkIcon}
           >
             <p className="mt-5 text-base leading-8 text-[#a3a3a3]">

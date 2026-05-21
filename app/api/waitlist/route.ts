@@ -7,17 +7,17 @@ const features = {
     audienceEnv: "RESEND_AUDIENCE_ID_MAC",
     propertyKey: "yoink_waitlist_mac",
   },
-  "channel-decoder": {
-    title: "Channel Decoder",
-    audienceName: "yoink-v2-channel-decoder-waitlist",
-    audienceEnv: "RESEND_AUDIENCE_ID_CHANNEL_DECODER",
-    propertyKey: "yoink_waitlist_channel_decoder",
+  "multi-platform": {
+    title: "More video platforms",
+    audienceName: "yoink-future-multi-platform-waitlist",
+    audienceEnv: "RESEND_AUDIENCE_ID_MULTI_PLATFORM",
+    propertyKey: "yoink_waitlist_multi_platform",
   },
-  "niche-corpus": {
-    title: "Niche Corpus",
-    audienceName: "yoink-v2-niche-corpus-waitlist",
-    audienceEnv: "RESEND_AUDIENCE_ID_NICHE_CORPUS",
-    propertyKey: "yoink_waitlist_niche_corpus",
+  projects: {
+    title: "Send to Projects",
+    audienceName: "yoink-future-projects-waitlist",
+    audienceEnv: "RESEND_AUDIENCE_ID_PROJECTS",
+    propertyKey: "yoink_waitlist_projects",
   },
   podcast: {
     title: "Podcast support",

@@ -19,15 +19,13 @@ Set the canonical production URL in Vercel so metadata, Open Graph, JSON-LD,
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-production-domain.example
-NEXT_PUBLIC_CHROME_WEB_STORE_URL=https://chromewebstore.google.com/detail/...
 NEXT_PUBLIC_WINDOWS_DOWNLOAD_URL=https://github.com/ryanbiddy/yoink/releases/latest
 ```
 
-If the variable is not set, the site falls back to the current Vercel URL.
-Before launch, make sure this is not pointed at a domain owned by another Yoink
-product. Plausible is only loaded when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set.
-The Chrome Web Store URL should be swapped from the placeholder as soon as the
-listing is live.
+If the canonical URL variable is not set, the site falls back to
+`https://ryanbiddy.com/yoink`. Plausible is only loaded when
+`NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set. The Windows download URL should point at
+the latest GitHub release until the approved Chrome Web Store listing is ready.
 
 ## Roadmap waitlists
 
@@ -51,8 +49,8 @@ yoink_waitlist_last_audience
 yoink_waitlist_source
 yoink_waitlist_signed_up_at
 yoink_waitlist_mac
-yoink_waitlist_channel_decoder
-yoink_waitlist_niche_corpus
+yoink_waitlist_multi_platform
+yoink_waitlist_projects
 yoink_waitlist_podcast
 ```
 
@@ -61,8 +59,8 @@ audiences in Resend and add their IDs to Vercel:
 
 ```bash
 RESEND_AUDIENCE_ID_MAC=...
-RESEND_AUDIENCE_ID_CHANNEL_DECODER=...
-RESEND_AUDIENCE_ID_NICHE_CORPUS=...
+RESEND_AUDIENCE_ID_MULTI_PLATFORM=...
+RESEND_AUDIENCE_ID_PROJECTS=...
 RESEND_AUDIENCE_ID_PODCAST=...
 ```
 
@@ -70,8 +68,8 @@ Suggested audience names:
 
 ```text
 yoink-v2-mac-waitlist
-yoink-v2-channel-decoder-waitlist
-yoink-v2-niche-corpus-waitlist
+yoink-future-multi-platform-waitlist
+yoink-future-projects-waitlist
 yoink-v2-podcast-waitlist
 ```
 

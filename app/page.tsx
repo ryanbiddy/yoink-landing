@@ -9,7 +9,7 @@ import {
   siteUrl,
   windowsDownloadUrl,
 } from "./site";
-import { audienceRoutes, launchArticles } from "./v2-data";
+import { audienceRoutes, launchArticles, mcpTools } from "./v2-data";
 
 const steps = [
   {
@@ -58,57 +58,157 @@ const useCases = [
 
 const v2Highlights = [
   {
+    id: "mcp-server",
     title: "MCP server",
     body: "Thirteen local tools your AI agent can call directly, from yoink_video to find_mentions.",
     Icon: CodeIcon,
   },
   {
+    id: "yoink-memory",
     title: "Yoink Memory",
-    body: "A searchable local library of every corpus you have saved, indexed for fast recall.",
+    body: "A searchable local library of every corpus you have saved, backed by a local SQLite FTS5 index.",
     Icon: FilterIcon,
   },
   {
+    id: "playlist-mode",
     title: "Playlist Mode",
-    body: "Batch up to 10 videos from a playlist and get a combined corpus without babysitting tabs.",
+    body: "Batch up to 10 videos from a playlist, tolerate partial failures, cancel mid-flight, and get a combined corpus.",
     Icon: PlayOutlineIcon,
   },
   {
+    id: "hook-type",
     title: "Hook Type classification",
-    body: "Nine opening-hook categories with self-calibration when you correct the classifier.",
+    body: "Nine opening-hook categories - curiosity_gap through stakes - with self-calibration from your own library.",
     Icon: SparkIcon,
   },
   {
+    id: "comment-intelligence",
     title: "Comment Intelligence",
     body: "Themes, mentioned products, and notable disagreements pulled from the audience layer.",
     Icon: ComputerIcon,
   },
   {
+    id: "entity-extraction",
     title: "Entity Extraction",
     body: "Use find_mentions to locate people, tools, products, and topics across your library.",
     Icon: FilterIcon,
   },
 ];
 
-const positioningCards = [
+const productPaths = [
   {
-    title: "One button on the video",
+    id: "browser-path",
+    eyebrow: "Browser path",
+    title: "Click Yoink, paste anywhere.",
+    body: "The YouTube page gets a Yoink button. One click copies a markdown corpus to your clipboard with transcripts, comments, metadata, channel context, and up to 12 base64 screenshots for Claude, ChatGPT, or any chat AI.",
+    Icon: PlayOutlineIcon,
+  },
+  {
+    id: "agent-path",
+    eyebrow: "Agent path",
+    title: "Let MCP call Yoink directly.",
+    body: "The local Model Context Protocol server exposes 13 tools, so Claude Desktop, Cursor, ChatGPT Desktop, Continue, Cline, and other MCP clients can call yoink_video, classify_hook, analyze_comments, and find_mentions without a paste step.",
+    Icon: CodeIcon,
+  },
+  {
+    id: "operator-path",
+    eyebrow: "Operator path",
+    title: "Drop in the Skill.",
+    body: "The portable agentskills.io SKILL.md teaches compatible agents the workflow: citation discipline, hook-autopsy tweet mode, the Hook Type taxonomy, and how to use the MCP tools like an operator.",
+    Icon: SparkIcon,
+  },
+];
+
+const moatCards = [
+  {
+    id: "bookmark-ux",
+    title: "Bookmark UX",
     body: "Capture context where you find it: the YouTube page, playlist, or thumbnail. No dashboard upload loop.",
     Icon: PlayOutlineIcon,
   },
   {
-    title: "Beyond transcripts",
-    body: "Yoink packages the transcript, screenshots, comments, metadata, channel context, and citations into one markdown corpus.",
+    id: "structured-corpus",
+    title: "Structured corpus",
+    body: "Yoink packages transcript, screenshots, comments, metadata, channel context, and citations into one markdown file.",
     Icon: DocumentIcon,
   },
   {
-    title: "Local by default",
-    body: "Your research library stays on your machine. AI analysis is opt-in and bring-your-own key.",
+    id: "local-first",
+    title: "Local-first",
+    body: "Your research library stays on your machine. AI features are opt-in and use your own Anthropic key.",
     Icon: LockIcon,
   },
   {
+    id: "agent-native",
     title: "Agent-native",
     body: "MCP gives agents 13 tools. The Operator Skill teaches the workflow: hooks, comments, citations, and cross-corpus search.",
     Icon: CodeIcon,
+  },
+];
+
+const comparisonColumns = [
+  {
+    title: "Cloud-AI tools",
+    body: "Notebook-style tools can ingest video, but your research corpus lives in someone else's cloud and the workflow stays inside that vendor.",
+  },
+  {
+    title: "Transcript extensions",
+    body: "Transcript buttons are useful, but they usually stop at text. Screenshots, comments, channel context, citations, and agent tools are missing.",
+  },
+  {
+    title: "Yoink",
+    body: "Local corpus ownership, one-click capture, 13 MCP tools, Operator Skill workflow, Hook Type, Comment Intelligence, and find_mentions across your library.",
+  },
+];
+
+const installSteps = [
+  {
+    title: "Download the Windows helper",
+    body: "Yoink ships as a local Python helper for Windows. It bundles Python, yt-dlp, ffmpeg, keyring, and the MCP SDK at roughly 120 MB so extraction can happen on your machine.",
+    Icon: ComputerIcon,
+  },
+  {
+    title: "Enable the browser extension",
+    body: "Use Yoink from Chrome or Chromium browsers including Edge, Brave, Comet, Opera GX, and Vivaldi. The extension talks only to the helper on localhost.",
+    Icon: PlayOutlineIcon,
+  },
+  {
+    title: "Pick your workflow",
+    body: "Paste the corpus into Claude or ChatGPT, or connect your agent with the generated MCP config and let it call Yoink directly.",
+    Icon: CodeIcon,
+  },
+];
+
+const faqItems = [
+  {
+    question: "Why does Yoink need a helper?",
+    answer:
+      "The browser extension cannot reliably run yt-dlp, ffmpeg, local file writes, screenshot processing, the SQLite Library Index, or an MCP server by itself. The helper does that work locally and the extension stays thin.",
+  },
+  {
+    question: "Can my agent call Yoink directly?",
+    answer:
+      "Yes. Yoink v2 includes a local Model Context Protocol server with 13 tools and config snippets for Claude Desktop, Cursor, Continue, and Cline. Any MCP-compatible client can use the same local server shape.",
+  },
+  {
+    question: "Is my API key safe?",
+    answer:
+      "AI-powered features are optional and use your own Anthropic API key. The key is encrypted at rest by Windows Credential Manager and sent only as the Authorization header on Anthropic API calls.",
+  },
+  {
+    question: "Does Yoink send telemetry?",
+    answer:
+      "No. Yoink has no analytics, no telemetry, and no remote logging. Core extraction talks to YouTube and your local helper; optional AI analysis talks to Anthropic with your key.",
+  },
+  {
+    question: "What browsers work?",
+    answer:
+      "Yoink targets Chrome and Chromium-based browsers: Chrome, Edge, Brave, Comet, Opera GX, and Vivaldi. Windows is the supported packaged build today; Mac is planned for v2.1.",
+  },
+  {
+    question: "Free forever - what's the catch?",
+    answer:
+      "There is no Yoink subscription. The product is open source. If you enable AI features, Anthropic bills your own API key directly; Yoink does not sit in the middle.",
   },
 ];
 
@@ -161,7 +261,10 @@ const structuredData = {
       applicationCategory: "BrowserApplication",
       applicationSubCategory: "Chrome extension",
       operatingSystem: "Windows",
-      browserRequirements: "Requires Google Chrome or a Chromium browser.",
+      browserRequirements:
+        "Requires Google Chrome or a Chromium browser plus the local Yoink helper.",
+      softwareRequirements:
+        "Windows helper bundles Python, yt-dlp, ffmpeg, keyring, and MCP SDK.",
       softwareVersion: "2.0",
       url: siteUrl,
       image: `${siteUrl}/og-image.png`,
@@ -183,11 +286,13 @@ const structuredData = {
       },
       featureList: [
         "Chrome extension for one-click YouTube-to-AI capture from the video page",
+        "Clipboard paste flow for Claude, ChatGPT, and chat AI tools",
         "Structured corpus output with transcripts, screenshots, comments, metadata, channel context, and citations",
         "Local MCP server with 13 callable tools for AI agents",
-        "Portable Operator Skill for Claude, Cursor, OpenClaw, and Hermes",
-        "Yoink Memory searchable library with full-text search",
-        "Optional BYO-key Hook Type, Comment Intelligence, and Entity Extraction",
+        "Portable agentskills.io Operator Skill for Claude, Cursor, OpenClaw, and Hermes",
+        "Playlist Mode for up to 10 videos",
+        "Yoink Memory searchable library backed by local SQLite FTS5",
+        "Optional BYO-key Hook Type classification, Comment Intelligence, and Entity Extraction",
       ],
       description: siteDescription,
     },
@@ -223,21 +328,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     <p className="mb-5 text-xs font-semibold uppercase text-yoink-orange">
       {children}
     </p>
-  );
-}
-
-function AppleIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M16.8 12.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-3-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 6.9 1.1 9.1.8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.2-2.5 1.3-2.6 0 0-2.7-1-2.7-3.7Z"
-        fill="currentColor"
-      />
-      <path
-        d="M14.7 5.9c.6-.8 1-1.8.9-2.9-.9 0-2 .6-2.6 1.3-.6.7-1.1 1.8-1 2.8 1 0 2-.5 2.7-1.2Z"
-        fill="currentColor"
-      />
-    </svg>
   );
 }
 
@@ -522,25 +612,15 @@ function BrandLockup({ footer = false }: { footer?: boolean }) {
 }
 
 function DownloadButtons({ inverse = false }: { inverse?: boolean }) {
-  const macBase = inverse
-    ? "bg-yoink-black/80 text-yoink-orange/65"
-    : "border border-white/15 bg-white/[0.04] text-white/55";
   const windowsBase = inverse
     ? "bg-yoink-black text-yoink-orange"
     : "bg-white text-yoink-black";
+  const agentBase = inverse
+    ? "border border-yoink-black text-yoink-black hover:bg-yoink-black hover:text-yoink-orange"
+    : "border border-white/15 text-white hover:border-yoink-orange hover:text-yoink-orange";
 
   return (
     <div className="flex flex-col gap-3 sm:flex-row">
-      <button
-        type="button"
-        disabled
-        aria-disabled="true"
-        className={`inline-flex cursor-not-allowed items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase ${macBase}`}
-      >
-        <AppleIcon className="h-5 w-5" />
-        Download for Mac
-        <span className="text-[10px] font-bold uppercase">Mac in v2.1</span>
-      </button>
       <a
         href={windowsDownloadUrl}
         className={`focus-ring inline-flex items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase transition hover:opacity-90 ${windowsBase}`}
@@ -548,6 +628,13 @@ function DownloadButtons({ inverse = false }: { inverse?: boolean }) {
         <WindowsIcon className="h-5 w-5" />
         Download for Windows
       </a>
+      <Link
+        href="/agent-docs"
+        className={`focus-ring inline-flex items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase transition ${agentBase}`}
+      >
+        <CodeIcon className="h-5 w-5" />
+        Agent docs
+      </Link>
     </div>
   );
 }
@@ -568,7 +655,7 @@ function DemoFrame() {
 
 export default function Home() {
   return (
-    <main className="bg-yoink-black text-white">
+    <main className="overflow-x-hidden bg-yoink-black text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: structuredDataJson }}
@@ -580,7 +667,7 @@ export default function Home() {
           </Link>
           <nav
             aria-label="Primary"
-            className="flex flex-wrap items-center justify-end gap-x-5 gap-y-3 text-sm font-medium text-white"
+            className="flex w-full flex-wrap items-center justify-start gap-x-4 gap-y-3 text-sm font-medium text-white sm:w-auto sm:justify-end sm:gap-x-5"
           >
             <Link href="/creators" className="focus-ring transition hover:text-yoink-orange">
               Creators
@@ -599,7 +686,7 @@ export default function Home() {
             </Link>
             <a
               href={githubUrl}
-              className="focus-ring transition hover:text-yoink-orange"
+              className="focus-ring hidden transition hover:text-yoink-orange sm:inline"
             >
               GitHub
             </a>
@@ -608,22 +695,24 @@ export default function Home() {
 
         <div className="mx-auto max-w-7xl pb-20 pt-24 sm:pb-28 sm:pt-32 lg:pb-36 lg:pt-40">
           <Eyebrow>github.com/ryanbiddy/yoink</Eyebrow>
-          <h1 className="max-w-6xl font-display text-6xl font-bold leading-[1.03] text-white sm:text-7xl md:text-[96px] lg:text-[118px]">
-            <span className="text-yoink-orange">Yoink</span> turns YouTube into
-            local context your AI can actually use.
+          <h1 className="max-w-6xl break-words font-display text-4xl font-bold leading-[1.03] text-white sm:text-7xl md:text-[96px] lg:text-[118px]">
+            <span className="block">Your YouTube</span>
+            <span className="block">bookmark for LLMs</span>
+            <span className="block text-yoink-orange">and agents.</span>
           </h1>
           <p className="mt-8 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
-            A one-click capture button for Claude and ChatGPT, plus a local MCP
-            server and Operator Skill for agents. Yoink turns transcripts,
-            screenshots, comments, metadata, and channel context into a
-            structured corpus that stays on your machine.
+            Your bookmark that extracts everything to your LLMs - on the web or
+            by your agents. Paste the structured corpus into Claude or ChatGPT,
+            or let an MCP-compatible agent call
+            yoink_video, classify_hook, analyze_comments, and find_mentions
+            directly. Same local helper. Same owned library.
           </p>
           <div className="mt-10">
             <DownloadButtons />
           </div>
           <p className="mt-5 text-base text-[#8a8a8a]">
-            Free forever. Local-first. AI features are opt-in and bring your own
-            key.{" "}
+            Free forever. Windows now. Chrome, Edge, Brave, Comet, Opera GX,
+            and Vivaldi. Mac in v2.1.{" "}
             <a
               href={githubUrl}
               className="focus-ring text-white underline decoration-yoink-orange underline-offset-4"
@@ -638,28 +727,86 @@ export default function Home() {
 
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow>Positioning</Eyebrow>
+          <Eyebrow>Product paths</Eyebrow>
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <h2 className="max-w-5xl font-display text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[96px]">
-              Not another transcript button.
+            <h2 className="max-w-5xl break-words font-display text-3xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[96px]">
+              Three paths. One local corpus.
             </h2>
             <p className="text-xl leading-9 text-[#a3a3a3]">
+              Yoink is not just a Chrome extension and not just an MCP server.
+              It is one local YouTube research layer with a browser path for
+              paste workflows, an agent path for callable tools, and an
+              Operator Skill for disciplined analysis.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {productPaths.map(({ id, eyebrow, title, body, Icon }) => (
+              <article id={id} key={title} className="border border-white/12 p-6">
+                <Icon className="h-9 w-9 text-yoink-orange" />
+                <p className="mt-8 text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+                  {eyebrow}
+                </p>
+                <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
+                  {title}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                  {body}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <Eyebrow>Competitive moat</Eyebrow>
+            <h2 className="max-w-5xl break-words font-display text-3xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[96px]">
+              Not another transcript button.
+            </h2>
+            <p className="mt-6 max-w-4xl text-xl leading-9 text-[#a3a3a3]">
               Transcript extraction is table stakes. Yoink wins on the layer
-              around it: one-click capture from the video page, local ownership
-              of the corpus, structured operator analysis, and agent tools that
-              can search, cite, and compare your library.
+              around it: bookmark UX, structured operator analysis, local corpus
+              ownership, and agent-native tools that can search, cite, and
+              compare your library.
             </p>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {positioningCards.map(({ title, body, Icon }) => (
-              <article key={title} className="border border-white/12 p-6">
+            {moatCards.map(({ id, title, body, Icon }) => (
+              <article id={id} key={title} className="border border-white/12 p-6">
                 <Icon className="h-9 w-9 text-yoink-orange" />
                 <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
                   {title}
                 </h3>
                 <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
                   {body}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {comparisonColumns.map((column) => (
+              <article
+                key={column.title}
+                className={`border p-6 ${
+                  column.title === "Yoink"
+                    ? "border-yoink-orange bg-yoink-orange text-yoink-black"
+                    : "border-white/12"
+                }`}
+              >
+                <h3
+                  className={`font-display text-4xl font-bold leading-none ${
+                    column.title === "Yoink" ? "text-yoink-black" : "text-white"
+                  }`}
+                >
+                  {column.title}
+                </h3>
+                <p
+                  className={`mt-5 text-base leading-8 ${
+                    column.title === "Yoink" ? "text-yoink-black" : "text-[#a3a3a3]"
+                  }`}
+                >
+                  {column.body}
                 </p>
               </article>
             ))}
@@ -674,7 +821,7 @@ export default function Home() {
               What&apos;s new in V2
             </p>
             <div className="mt-6 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-              <h2 className="max-w-5xl font-display text-5xl font-bold leading-[1.03] sm:text-6xl lg:text-[96px]">
+              <h2 className="max-w-5xl break-words font-display text-3xl font-bold leading-[1.03] sm:text-6xl lg:text-[96px]">
                 Yoink is now the YouTube layer for agents.
               </h2>
               <div>
@@ -682,7 +829,8 @@ export default function Home() {
                   The one-click Chrome extension is still here. V2 adds a local
                   MCP server with 13 callable tools, a portable Operator Skill,
                   Yoink Memory, Playlist Mode, Hook Type classification, Comment
-                  Intelligence, and cross-corpus entity search.
+                  Intelligence, Smart Screenshot Picker, and cross-corpus entity
+                  search through find_mentions.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link
@@ -720,9 +868,9 @@ export default function Home() {
             <dl className="grid gap-5 text-sm leading-7 text-[#a3a3a3] md:grid-cols-2">
               {[
                 ["What is Yoink?", "A local-first YouTube-to-AI corpus tool, not a transcript-only summarizer."],
-                ["Primary interfaces", "Chrome extension, local MCP server, and portable Operator Skill."],
-                ["Agent tools", "13 MCP tools for extraction, search, comments, hooks, citations, health, and entity mentions."],
-                ["Privacy model", "Core extraction runs locally. AI features are opt-in and bring-your-own Anthropic key."],
+                ["Primary interfaces", "Browser clipboard flow, local MCP server, and portable agentskills.io Operator Skill."],
+                ["Agent tools", "13 MCP tools for extraction, playlist jobs, search, comments, hooks, citations, health, and entity mentions."],
+                ["Privacy model", "Core extraction runs locally. Optional AI features use your Anthropic key stored by Windows Credential Manager."],
               ].map(([term, description]) => (
                 <div key={term}>
                   <dt className="font-semibold text-white">{term}</dt>
@@ -732,9 +880,29 @@ export default function Home() {
             </dl>
           </div>
 
+          <div className="mt-8 border border-white/12 p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+              MCP tool names
+            </p>
+            <p className="mt-5 max-w-4xl text-base leading-8 text-[#a3a3a3]">
+              Agents can discover and call these local Model Context Protocol
+              tools directly:
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {mcpTools.map(([name]) => (
+                <code
+                  key={name}
+                  className="border border-white/12 bg-black px-3 py-2 text-xs text-white"
+                >
+                  {name}
+                </code>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {v2Highlights.map(({ title, body, Icon }) => (
-              <article key={title} className="border border-white/12 p-6">
+            {v2Highlights.map(({ id, title, body, Icon }) => (
+              <article id={id} key={title} className="border border-white/12 p-6">
                 <Icon className="h-9 w-9 text-yoink-orange" />
                 <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
                   {title}
@@ -792,7 +960,7 @@ export default function Home() {
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Choose your path</Eyebrow>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             Which one are you?
           </h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -825,7 +993,7 @@ export default function Home() {
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Demo</Eyebrow>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             How Yoink works
           </h2>
           <div className="mt-12">
@@ -839,7 +1007,7 @@ export default function Home() {
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>How it works</Eyebrow>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             From video to context in one click.
           </h2>
 
@@ -869,10 +1037,56 @@ export default function Home() {
 
       <div className="stripe-divider" />
 
+      <section id="install-reality" className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow>Install reality</Eyebrow>
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <h2 className="max-w-5xl break-words font-display text-3xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-[88px]">
+              It is local because the helper does the work.
+            </h2>
+            <p className="text-xl leading-9 text-[#a3a3a3]">
+              Yoink is not a cloud upload service. Install the Windows helper,
+              enable the extension, then use either the clipboard flow or the
+              MCP server. The setup page gives agents the exact config snippet
+              for your machine.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {installSteps.map(({ title, body, Icon }) => (
+              <article key={title} className="border border-white/12 p-6">
+                <Icon className="h-9 w-9 text-yoink-orange" />
+                <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
+                  {title}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                  {body}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={windowsDownloadUrl}
+              className="focus-ring inline-flex items-center justify-center bg-white px-5 py-4 text-sm font-semibold uppercase text-yoink-black transition hover:opacity-90"
+            >
+              Download Windows helper
+            </a>
+            <a
+              href={githubUrl}
+              className="focus-ring inline-flex items-center justify-center border border-white/15 px-5 py-4 text-sm font-semibold uppercase text-white transition hover:border-yoink-orange hover:text-yoink-orange"
+            >
+              View source on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div className="stripe-divider" />
+
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Example</Eyebrow>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             Here&apos;s what your AI sees.
           </h2>
 
@@ -880,7 +1094,7 @@ export default function Home() {
             <div className="min-w-0 overflow-hidden border border-white/12 bg-[#0f0f0f] p-4">
               <Image
                 src="/karpathy-thumbnail.jpg"
-                alt="Placeholder thumbnail for Andrej Karpathy's Intro to Large Language Models talk."
+                alt="Andrej Karpathy YouTube talk thumbnail used as the Yoink demo source."
                 width={1280}
                 height={720}
                 className="aspect-video h-auto w-full max-w-full object-cover"
@@ -926,20 +1140,21 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <Eyebrow>Private by design</Eyebrow>
-            <h2 className="font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+            <h2 className="break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
               Your research stays on your machine.
             </h2>
           </div>
           <div>
             <p className="text-xl leading-9 text-[#8a8a8a]">
-              Yoink runs locally. No cloud uploads. No accounts. No tracking.
-              Your videos, transcripts, and analyses never leave your hardware
-              unless you choose to send them somewhere.
+              Yoink runs locally. No cloud uploads. No accounts. No analytics,
+              no telemetry, and no remote logging. Optional Hook Type, Comment
+              Intelligence, and Entity Extraction calls go to Anthropic with
+              your own API key, encrypted at rest by Windows Credential Manager.
             </p>
             <div className="mt-10 space-y-6">
               {[
                 [LockIcon, "No accounts required"],
-                [ComputerIcon, "Runs entirely on your computer"],
+                [ComputerIcon, "Core extraction runs on your computer"],
                 [CodeIcon, "Open source on GitHub"],
               ].map(([Icon, label]) => (
                 <div key={label as string} className="flex items-center gap-4">
@@ -957,7 +1172,7 @@ export default function Home() {
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Built for deep work</Eyebrow>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             Three ways people use Yoink today.
           </h2>
 
@@ -977,11 +1192,34 @@ export default function Home() {
 
       <div className="stripe-divider" />
 
+      <section id="faq" className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+            The practical stuff before you install.
+          </h2>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {faqItems.map((item) => (
+              <article key={item.question} className="border border-white/12 p-6">
+                <h3 className="font-display text-4xl font-bold leading-none text-white">
+                  {item.question}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                  {item.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="stripe-divider" />
+
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <Eyebrow>Built by ReplayRyan</Eyebrow>
-            <h2 className="font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+            <h2 className="break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
               AI-native tools for creator-operators.
             </h2>
           </div>
@@ -1005,7 +1243,7 @@ export default function Home() {
           <p className="mb-5 text-xs font-semibold uppercase text-yoink-black">
             Download Yoink
           </p>
-          <h2 className="max-w-5xl font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-[96px]">
+          <h2 className="max-w-5xl break-words font-display text-3xl font-bold leading-[1.05] sm:text-6xl lg:text-[96px]">
             Turn the next great video into usable AI context.
           </h2>
           <div className="mt-10">
@@ -1047,6 +1285,9 @@ export default function Home() {
             </Link>
             <Link className="focus-ring hover:text-white" href="/channel-audit">
               Channel audit
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/#faq">
+              FAQ
             </Link>
             <Link className="focus-ring hover:text-white" href="/privacy">
               Privacy

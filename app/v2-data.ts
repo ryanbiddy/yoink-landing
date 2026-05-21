@@ -25,7 +25,7 @@ export const launchArticles = [
   {
     href: "/agent-docs",
     title: "Agent docs for Yoink MCP",
-    body: "A crawlable technical reference for MCP setup, tools, supported clients, and the Operator Skill.",
+    body: "A crawlable technical reference for Model Context Protocol setup, 13 tools, supported clients, and the agentskills.io Operator Skill.",
   },
   {
     href: "/local-first",

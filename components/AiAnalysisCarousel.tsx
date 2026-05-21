@@ -4,25 +4,25 @@ import { useEffect, useState } from "react";
 
 const analysisPairs = [
   {
-    label: "CREATOR BENCHMARKING",
+    label: "HOOK TYPE OUTPUT",
     question:
-      "What hooks does this creator use in the first 30 seconds, and which ones drive engagement based on the comments?",
+      "classify_hook on the Karpathy demo",
     response:
-      "Karpathy opens with a concrete claim about scale, then introduces a tension between intuition and the math. The highest comment engagement clusters around the 0:47 mark, where he frames LLMs as 'compression of the internet.' Three other hooks drive shorter spikes: the 'parameters as knowledge' framing at 2:13, the analogy to 'next-token prediction as understanding' at 4:22, and the contrarian take on emergent abilities at 8:51.",
+      "Yoink classifies the opening as curiosity_gap. The hook names the payoff - understanding what large language models are doing - while withholding the mechanism until the model predicts, compresses, and recombines internet-scale text. The strongest cited moment is 0:47, where the gap becomes concrete enough for an agent to reason from it.",
   },
   {
-    label: "DEVELOPER LEARNING",
+    label: "COMMENT INTELLIGENCE",
     question:
-      "Walk me through the transformer attention section so I can implement it from scratch.",
+      "analyze_comments on the same corpus",
     response:
-      "Karpathy explains attention in three phases. First, the query/key/value setup at 12:33 - each token projects into three different vector spaces. Second, the attention computation at 14:18 - query and key dot products, scaled and softmaxed into weights. Third, the multi-head structure at 16:45 - running multiple attention heads in parallel and concatenating. Implementation order matters: build single-head first, verify with a tiny example, then scale to multi-head.",
+      "Yoink clusters the audience layer into implementation requests, scaling-law questions, and compression metaphors. Mentioned tools and concepts include transformers, tokenization, RLHF, GPUs, and PyTorch. Notable disagreements center on whether next-token prediction is enough to call the system understanding.",
   },
   {
-    label: "RESEARCHER TRIAGE",
+    label: "ENTITY LOOKUP",
     question:
-      "I don't have time to watch the full hour. What are the 3 most important sections for understanding modern LLM training?",
+      "find_mentions(\"RLHF\") across the library",
     response:
-      "Skip to these timestamps: 8:15 covers the data pipeline and curation tradeoffs. 24:30 explains the loss landscape and why scaling laws emerge. 45:12 discusses RLHF and the alignment phase. The middle 20 minutes on tokenization can be skimmed unless you're implementing - that section is well-explained but not novel relative to existing tutorials.",
+      "Yoink returns every saved corpus where RLHF appears, with the video title, topic folder, snippet, and citation map. That is the library effect: each yoink becomes part of a searchable local research base your agent can query later.",
   },
 ];
 
@@ -49,7 +49,7 @@ export function AiAnalysisCarousel() {
           {activePair.label}
         </p>
         <p className="mt-5 font-display text-3xl font-semibold italic leading-tight text-white sm:text-4xl">
-          &ldquo;{activePair.question}&rdquo;
+          {activePair.question}
         </p>
         <p className="mt-6 text-base leading-8 text-[#a3a3a3] sm:text-lg">
           {activePair.response}
@@ -76,8 +76,14 @@ export function AiAnalysisCarousel() {
       </div>
 
       <p className="mt-5 text-sm text-[#8a8a8a]">
-        From YouTube URL to working AI analysis in one click. Centered around
-        our Karpathy demo above.
+        From YouTube URL to working AI analysis in one click. Read the{" "}
+        <a
+          href="/hooks"
+          className="text-white underline decoration-yoink-orange underline-offset-4"
+        >
+          Hook Type taxonomy
+        </a>
+        .
       </p>
     </div>
   );

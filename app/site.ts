@@ -8,7 +8,8 @@ export const githubUrl = "https://github.com/ryanbiddy/yoink";
 
 export const chromeInstallUrl =
   process.env.NEXT_PUBLIC_CHROME_WEB_STORE_URL ||
-  "https://chromewebstore.google.com/detail/yoink/placeholder";
+  // TODO(Ryan): swap this for the approved Chrome Web Store URL once live.
+  "https://github.com/ryanbiddy/yoink/releases/latest";
 
 export const windowsDownloadUrl =
   process.env.NEXT_PUBLIC_WINDOWS_DOWNLOAD_URL ||
@@ -21,9 +22,9 @@ export const agentDocsUrl =
   "https://github.com/ryanbiddy/yoink/blob/main/docs/v2-mcp.md";
 
 export const siteTitle =
-  "Yoink v2 - Local-first YouTube context for AI agents";
+  "Yoink v2 - Your YouTube bookmark for LLMs and agents";
 
 export const siteDescription =
-  "Yoink is the local-first YouTube research layer: a Chrome extension, local MCP server, and Operator Skill that turn videos into structured corpora for Claude, ChatGPT, Cursor, and agents.";
+  "Yoink is your bookmark that extracts everything to your LLMs - on the web or by your agents. One-click YouTube corpora, 13 local MCP tools, and an Operator Skill.";
 
 export const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN || "";

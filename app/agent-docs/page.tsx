@@ -13,7 +13,7 @@ import { mcpTools } from "../v2-data";
 const canonicalUrl = "https://ryanbiddy.com/yoink/agent-docs";
 const pageTitle = "Yoink agent docs - MCP tools, Operator Skill, and setup";
 const pageDescription =
-  "Agent-readable Yoink v2 docs for MCP setup, 13 local tools, supported clients, and the portable Operator Skill.";
+  "Agent-readable Yoink v2 docs for MCP setup, 13 local tools, supported clients, and the portable agentskills.io Operator Skill.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -64,8 +64,10 @@ const structuredData = {
     "YouTube MCP server",
     "Claude Desktop MCP",
     "Cursor MCP",
+    "ChatGPT Desktop MCP",
     "Operator Skill",
     "Agent Skills",
+    "agentskills.io",
   ],
   about: mcpTools.map(([name]) => name),
 };
@@ -96,15 +98,15 @@ export default function AgentDocsPage() {
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
               Agent docs
             </p>
-            <h1 className="max-w-6xl font-display text-6xl font-bold leading-[1.03] text-white sm:text-7xl md:text-[96px] lg:text-[118px]">
+            <h1 className="max-w-6xl break-words font-display text-4xl font-bold leading-[1.03] text-white sm:text-7xl md:text-[96px] lg:text-[118px]">
               Yoink v2 docs for agents that need YouTube context.
             </h1>
             <p className="mt-8 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
               Yoink exposes YouTube extraction, search, citations, Hook Type,
               Comment Intelligence, and entity lookup as local MCP tools. This
               page is the crawlable summary for agents, docs crawlers, and
-              developers connecting Claude Desktop, Cursor, or another MCP
-              client.
+              developers connecting Claude Desktop, Cursor, ChatGPT Desktop,
+              Continue, Cline, or another MCP client.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
@@ -129,7 +131,7 @@ export default function AgentDocsPage() {
           <div className="grid gap-6 lg:grid-cols-4">
             {[
               ["Transport", "Stdio supported. Local HTTP JSON-RPC is experimental."],
-              ["Clients", "Claude Desktop and Cursor are the launch-tested paths."],
+              ["Clients", "Claude Desktop and Cursor are launch-tested. ChatGPT Desktop, Continue, Cline, and other MCP clients use the same shape."],
               ["Tools", "13 MCP tools covering extraction, search, citations, analysis, and diagnostics."],
               ["Privacy", "The MCP server runs locally and reads your local Yoink library."],
             ].map(([title, body]) => (
@@ -149,7 +151,7 @@ export default function AgentDocsPage() {
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
             Tool catalog
           </p>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             13 local tools your agent can call.
           </h2>
           <div className="mt-12 overflow-hidden border border-white/12">
@@ -184,7 +186,7 @@ export default function AgentDocsPage() {
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
             Config
           </p>
-          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+          <h2 className="max-w-4xl break-words font-display text-3xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
             Stdio MCP config.
           </h2>
           <p className="mt-6 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
@@ -220,13 +222,14 @@ export default function AgentDocsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
                 Operator Skill
               </p>
-              <h2 className="mt-6 font-display text-5xl font-bold leading-none text-white">
+              <h2 className="mt-6 break-words font-display text-3xl font-bold leading-none text-white sm:text-5xl">
                 Give the agent the workflow, not just the tools.
               </h2>
               <p className="mt-6 text-lg leading-8 text-[#a3a3a3]">
-                MCP exposes the functions. The Operator Skill tells the agent
-                how to use them: citation discipline, hook-autopsy mode,
-                YouTube research defaults, and source-grounded output.
+                MCP exposes the functions. The agentskills.io Operator Skill
+                tells the agent how to use them: citation discipline,
+                hook-autopsy mode, YouTube research defaults, and
+                source-grounded output.
               </p>
               <p className="mt-6 text-base leading-8 text-[#a3a3a3]">
                 Open the <SkillLink />.
@@ -236,7 +239,7 @@ export default function AgentDocsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
                 Agent crawl hints
               </p>
-              <h2 className="mt-6 font-display text-5xl font-bold leading-none text-white">
+              <h2 className="mt-6 break-words font-display text-3xl font-bold leading-none text-white sm:text-5xl">
                 Machine-readable paths.
               </h2>
               <ul className="mt-6 space-y-4 text-base leading-8 text-[#a3a3a3]">
