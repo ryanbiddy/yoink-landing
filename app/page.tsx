@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import { AiAnalysisCarousel } from "../components/AiAnalysisCarousel";
-import { RoadmapWaitlistSection } from "../components/RoadmapWaitlistSection";
 import {
   githubUrl,
   siteDescription,
   siteUrl,
   windowsDownloadUrl,
 } from "./site";
+import { audienceRoutes } from "./v2-data";
 
 const steps = [
   {
@@ -55,6 +55,39 @@ const useCases = [
   },
 ];
 
+const v2Highlights = [
+  {
+    title: "MCP server",
+    body: "Thirteen local tools your AI agent can call directly, from yoink_video to find_mentions.",
+    Icon: CodeIcon,
+  },
+  {
+    title: "Yoink Memory",
+    body: "A searchable local library of every corpus you have saved, indexed for fast recall.",
+    Icon: FilterIcon,
+  },
+  {
+    title: "Playlist Mode",
+    body: "Batch up to 10 videos from a playlist and get a combined corpus without babysitting tabs.",
+    Icon: PlayOutlineIcon,
+  },
+  {
+    title: "Hook Type classification",
+    body: "Nine opening-hook categories with self-calibration when you correct the classifier.",
+    Icon: SparkIcon,
+  },
+  {
+    title: "Comment Intelligence",
+    body: "Themes, mentioned products, and notable disagreements pulled from the audience layer.",
+    Icon: ComputerIcon,
+  },
+  {
+    title: "Entity Extraction",
+    body: "Use find_mentions to locate people, tools, products, and topics across your library.",
+    Icon: FilterIcon,
+  },
+];
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -87,9 +120,9 @@ const structuredData = {
       alternateName: "Yoink by ReplayRyan",
       applicationCategory: "BrowserApplication",
       applicationSubCategory: "Chrome extension",
-      operatingSystem: "Windows, macOS",
+      operatingSystem: "Windows",
       browserRequirements: "Requires Google Chrome or a Chromium browser.",
-      softwareVersion: "1.0",
+      softwareVersion: "2.0",
       url: siteUrl,
       image: `${siteUrl}/og-image.png`,
       screenshot: [
@@ -109,10 +142,11 @@ const structuredData = {
         "@id": `${siteUrl}/#organization`,
       },
       featureList: [
-        "Turns YouTube videos into structured context for Claude and ChatGPT",
-        "Exports transcripts, screenshots, comments, channel context, and metadata",
-        "Runs locally with no accounts or cloud uploads",
-        "Creates prompt-ready markdown corpora for AI research workflows",
+        "Chrome extension for one-click YouTube-to-AI capture",
+        "Local MCP server with 13 callable tools for AI agents",
+        "Portable Operator Skill for Claude, Cursor, OpenClaw, and Hermes",
+        "Yoink Memory searchable library with full-text search",
+        "Optional BYO-key Hook Type, Comment Intelligence, and Entity Extraction",
       ],
       description: siteDescription,
     },
@@ -425,7 +459,7 @@ function DownloadButtons({ inverse = false }: { inverse?: boolean }) {
       >
         <AppleIcon className="h-5 w-5" />
         Download for Mac
-        <span className="text-[10px] font-bold uppercase">Coming soon</span>
+        <span className="text-[10px] font-bold uppercase">Mac in v2.1</span>
       </button>
       <a
         href={windowsDownloadUrl}
@@ -460,16 +494,33 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: structuredDataJson }}
       />
       <section className="px-5 py-6 sm:px-8 lg:px-10">
-        <header className="mx-auto flex max-w-7xl items-center justify-between">
+        <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5">
           <Link href="/" aria-label="Yoink home" className="focus-ring rounded-sm">
             <BrandLockup />
           </Link>
-          <a
-            href={githubUrl}
-            className="focus-ring text-sm font-medium text-white transition hover:text-yoink-orange"
+          <nav
+            aria-label="Primary"
+            className="flex flex-wrap items-center justify-end gap-x-5 gap-y-3 text-sm font-medium text-white"
           >
-            GitHub
-          </a>
+            <Link href="/creators" className="focus-ring transition hover:text-yoink-orange">
+              Creators
+            </Link>
+            <Link href="/agents" className="focus-ring transition hover:text-yoink-orange">
+              Agents
+            </Link>
+            <Link href="/research" className="focus-ring transition hover:text-yoink-orange">
+              Research
+            </Link>
+            <Link href="/hooks" className="focus-ring transition hover:text-yoink-orange">
+              Hooks
+            </Link>
+            <a
+              href={githubUrl}
+              className="focus-ring transition hover:text-yoink-orange"
+            >
+              GitHub
+            </a>
+          </nav>
         </header>
 
         <div className="mx-auto max-w-7xl pb-20 pt-24 sm:pb-28 sm:pt-32 lg:pb-36 lg:pt-40">
@@ -478,11 +529,18 @@ export default function Home() {
             <span className="text-yoink-orange">Yoink</span> turns YouTube into
             prompt-ready context for any AI.
           </h1>
+          <p className="mt-8 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
+            Use the Chrome extension when you want one-click capture for Claude
+            and ChatGPT, the local MCP server when your agent needs 13 callable
+            YouTube tools, or the Operator Skill when Claude, Cursor, OpenClaw,
+            or Hermes needs the workflow preloaded.
+          </p>
           <div className="mt-10">
             <DownloadButtons />
           </div>
           <p className="mt-5 text-base text-[#8a8a8a]">
-            Free forever.{" "}
+            Free forever. Local-first. AI features are opt-in and bring your own
+            key.{" "}
             <a
               href={githubUrl}
               className="focus-ring text-white underline decoration-yoink-orange underline-offset-4"
@@ -490,6 +548,73 @@ export default function Home() {
               Open source on GitHub.
             </a>
           </p>
+        </div>
+      </section>
+
+      <div className="stripe-divider" />
+
+      <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow>Yoink v2</Eyebrow>
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <h2 className="font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+              Three ways to use it now.
+            </h2>
+            <p className="text-xl leading-9 text-[#a3a3a3]">
+              Yoink v2 is out. Three ways to use it now: the one-click Chrome
+              extension you already know, a local MCP server that gives your AI
+              agent 13 callable tools, and a portable Operator Skill that drops
+              into Claude, Cursor, OpenClaw, and Hermes. The extension path is
+              still built for Claude and ChatGPT. New AI-powered hook
+              classification, comment intelligence, and cross-corpus entity
+              search - all opt-in, all bring-your-own key.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {v2Highlights.map(({ title, body, Icon }) => (
+              <article key={title} className="border border-white/12 p-6">
+                <Icon className="h-9 w-9 text-yoink-orange" />
+                <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
+                  {title}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="stripe-divider" />
+
+      <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow>Choose your path</Eyebrow>
+          <h2 className="max-w-4xl font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
+            Which one are you?
+          </h2>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {audienceRoutes.map((route) => (
+              <Link
+                key={route.href}
+                href={route.href}
+                className="focus-ring group border border-white/12 p-6 transition hover:border-yoink-orange"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+                  {route.href.replace("/", "")}
+                </p>
+                <h3 className="mt-8 font-display text-4xl font-bold leading-none text-white">
+                  {route.title}
+                </h3>
+                <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                  {route.body}
+                </p>
+                <p className="mt-8 text-sm font-semibold uppercase text-white group-hover:text-yoink-orange">
+                  Open route
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -650,10 +775,6 @@ export default function Home() {
 
       <div className="stripe-divider" />
 
-      <RoadmapWaitlistSection />
-
-      <div className="stripe-divider" />
-
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
@@ -701,6 +822,18 @@ export default function Home() {
             aria-label="Footer links"
             className="flex flex-wrap gap-5 md:justify-center"
           >
+            <Link className="focus-ring hover:text-white" href="/creators">
+              Creators
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/agents">
+              Agents
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/research">
+              Research
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/hooks">
+              Hooks
+            </Link>
             <Link className="focus-ring hover:text-white" href="/privacy">
               Privacy
             </Link>

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 const features = {
   mac: {
-    title: "Mac support",
+    title: "Mac in v2.1",
     audienceName: "yoink-v2-mac-waitlist",
     audienceEnv: "RESEND_AUDIENCE_ID_MAC",
     propertyKey: "yoink_waitlist_mac",

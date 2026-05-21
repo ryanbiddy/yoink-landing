@@ -5,9 +5,9 @@ import { FormEvent, SVGProps, useState } from "react";
 const roadmapFeatures = [
   {
     id: "mac",
-    title: "Mac support",
+    title: "Mac in v2.1",
     description:
-      "Yoink running natively on macOS - same one-click experience, same local-first privacy.",
+      "Native Mac packaging is planned for v2.1 - same one-click experience, same local-first privacy.",
     Icon: AppleRoadmapIcon,
   },
   {

@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     "YouTube to ChatGPT",
     "AI research tool",
     "Chrome extension",
+    "MCP server",
+    "Operator Skill",
+    "Yoink Memory",
   ],
   alternates: {
     canonical: "/",

@@ -10,6 +10,22 @@ const routes = [
     path: "/privacy",
     priority: 0.5,
   },
+  {
+    path: "/creators",
+    priority: 0.8,
+  },
+  {
+    path: "/agents",
+    priority: 0.8,
+  },
+  {
+    path: "/research",
+    priority: 0.8,
+  },
+  {
+    path: "/hooks",
+    priority: 0.7,
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

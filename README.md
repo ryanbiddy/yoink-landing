@@ -1,6 +1,6 @@
 # Yoink Landing
 
-Landing page for Yoink, a Chrome extension that turns YouTube videos into structured input for Claude or ChatGPT.
+Landing page for Yoink v2, the YouTube layer for Claude, ChatGPT, and local AI agents.
 
 ## Development
 
@@ -19,11 +19,15 @@ Set the canonical production URL in Vercel so metadata, Open Graph, JSON-LD,
 ```bash
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-production-domain.example
+NEXT_PUBLIC_CHROME_WEB_STORE_URL=https://chromewebstore.google.com/detail/...
+NEXT_PUBLIC_WINDOWS_DOWNLOAD_URL=https://github.com/ryanbiddy/yoink/releases/latest
 ```
 
 If the variable is not set, the site falls back to the current Vercel URL.
 Before launch, make sure this is not pointed at a domain owned by another Yoink
 product. Plausible is only loaded when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set.
+The Chrome Web Store URL should be swapped from the placeholder as soon as the
+listing is live.
 
 ## Roadmap waitlists
 
