@@ -10,7 +10,7 @@ import {
 import { agentDocsUrl, githubUrl, operatorSkillUrl, siteUrl } from "../site";
 import { mcpTools } from "../v2-data";
 
-const canonicalUrl = "https://ryanbiddy.com/yoink/agent-docs";
+const canonicalUrl = `${siteUrl}/agent-docs`;
 const pageTitle = "Yoink agent docs - MCP tools, Operator Skill, and setup";
 const pageDescription =
   "Agent-readable Yoink v2 docs for MCP setup, 13 local tools, supported clients, and the portable agentskills.io Operator Skill.";
@@ -192,6 +192,11 @@ export default function AgentDocsPage() {
           <p className="mt-6 max-w-3xl text-xl leading-9 text-[#a3a3a3]">
             The installed setup page generates the exact command paths for your
             machine. The shape looks like this:
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-[#8a8a8a]">
+            This snippet uses a placeholder path. After install, Yoink&apos;s
+            setup page generates the real one for your machine - copy it from
+            there.
           </p>
           <CodeBlock>{`{
   "mcpServers": {

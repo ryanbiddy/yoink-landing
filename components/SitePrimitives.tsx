@@ -62,6 +62,9 @@ export function SiteHeader() {
         <Link href="/agent-docs" className="focus-ring transition hover:text-yoink-orange">
           Agent docs
         </Link>
+        <Link href="/install" className="focus-ring transition hover:text-yoink-orange">
+          Install
+        </Link>
         <Link href="/hooks" className="focus-ring transition hover:text-yoink-orange">
           Hooks
         </Link>
@@ -99,6 +102,9 @@ export function SiteFooter() {
           </Link>
           <Link className="focus-ring hover:text-white" href="/agent-docs">
             Agent docs
+          </Link>
+          <Link className="focus-ring hover:text-white" href="/install">
+            Install
           </Link>
           <Link className="focus-ring hover:text-white" href="/hooks">
             Hooks
@@ -214,13 +220,13 @@ export function PageHero({
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <a
             href={windowsDownloadUrl}
-            className="focus-ring inline-flex items-center justify-center bg-white px-5 py-4 text-sm font-semibold uppercase text-yoink-black transition hover:opacity-90"
+            className="focus-ring inline-flex w-full items-center justify-center bg-white px-4 py-4 text-xs font-semibold uppercase text-yoink-black transition hover:opacity-90 sm:w-auto sm:px-5 sm:text-sm"
           >
             {primaryLabel}
           </a>
           <a
             href={secondaryHref}
-            className="focus-ring inline-flex items-center justify-center border border-white/15 px-5 py-4 text-sm font-semibold uppercase text-white transition hover:border-yoink-orange hover:text-yoink-orange"
+            className="focus-ring inline-flex w-full items-center justify-center border border-white/15 px-4 py-4 text-xs font-semibold uppercase text-white transition hover:border-yoink-orange hover:text-yoink-orange sm:w-auto sm:px-5 sm:text-sm"
           >
             {secondaryLabel}
           </a>
@@ -287,13 +293,13 @@ export function InstallCta({
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <a
             href={windowsDownloadUrl}
-            className="focus-ring inline-flex items-center justify-center bg-yoink-black px-5 py-4 text-sm font-semibold uppercase text-yoink-orange transition hover:opacity-90"
+            className="focus-ring inline-flex w-full items-center justify-center bg-yoink-black px-4 py-4 text-xs font-semibold uppercase text-yoink-orange transition hover:opacity-90 sm:w-auto sm:px-5 sm:text-sm"
           >
             Download for Windows
           </a>
           <a
             href={githubUrl}
-            className="focus-ring inline-flex items-center justify-center border border-yoink-black px-5 py-4 text-sm font-semibold uppercase text-yoink-black transition hover:bg-yoink-black hover:text-yoink-orange"
+            className="focus-ring inline-flex w-full items-center justify-center border border-yoink-black px-4 py-4 text-xs font-semibold uppercase text-yoink-black transition hover:bg-yoink-black hover:text-yoink-orange sm:w-auto sm:px-5 sm:text-sm"
           >
             Open source on GitHub
           </a>
@@ -326,14 +332,14 @@ export function DownloadButtons({ inverse = false }: { inverse?: boolean }) {
     <div className="flex flex-col gap-3 sm:flex-row">
       <a
         href={windowsDownloadUrl}
-        className={`focus-ring inline-flex items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase transition hover:opacity-90 ${windowsBase}`}
+        className={`focus-ring inline-flex w-full items-center justify-center gap-2 px-4 py-4 text-xs font-semibold uppercase transition hover:opacity-90 sm:w-auto sm:gap-3 sm:px-5 sm:text-sm ${windowsBase}`}
       >
         <WindowsIcon className="h-5 w-5" />
         Download for Windows
       </a>
       <a
         href={githubUrl}
-        className={`focus-ring inline-flex items-center justify-center gap-3 px-5 py-4 text-sm font-semibold uppercase transition ${githubBase}`}
+        className={`focus-ring inline-flex w-full items-center justify-center gap-2 px-4 py-4 text-xs font-semibold uppercase transition sm:w-auto sm:gap-3 sm:px-5 sm:text-sm ${githubBase}`}
       >
         <CodeIcon className="h-5 w-5" />
         GitHub

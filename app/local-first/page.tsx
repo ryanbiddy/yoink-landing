@@ -9,7 +9,7 @@ import {
 } from "../../components/SitePrimitives";
 import { githubUrl, siteUrl } from "../site";
 
-const canonicalUrl = "https://ryanbiddy.com/yoink/local-first";
+const canonicalUrl = `${siteUrl}/local-first`;
 const articleTitle =
   "Why Yoink is local-first - and why that matters for AI-powered creator tools";
 const articleDescription =

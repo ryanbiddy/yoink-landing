@@ -11,6 +11,7 @@ Positioning: Your bookmark that extracts everything to your LLMs - on the web or
 Canonical site: ${siteUrl}
 GitHub source: ${githubUrl}
 Agent docs: ${siteUrl}/agent-docs
+Install docs: ${siteUrl}/install
 GitHub MCP docs: ${agentDocsUrl}
 Operator Skill raw file: ${operatorSkillUrl}
 
@@ -43,6 +44,7 @@ Core output includes:
 The Windows helper bundles Python, yt-dlp, ffmpeg, keyring, and the MCP SDK. It is required for extraction, local file writes, Yoink Memory, and MCP.
 
 Supported browser family: Chrome and Chromium-based browsers such as Edge, Brave, Comet, Opera GX, and Vivaldi.
+Windows install page: ${siteUrl}/install. Chrome Web Store listing is pending approval; use the GitHub release direct download for now.
 
 ## MCP Tools
 
@@ -63,6 +65,7 @@ Supported browser family: Chrome and Chromium-based browsers such as Edge, Brave
 ## Important Pages
 
 - Launch page: ${siteUrl}
+- Install page: ${siteUrl}/install
 - Agent docs: ${siteUrl}/agent-docs
 - Agents page: ${siteUrl}/agents
 - Creators page: ${siteUrl}/creators

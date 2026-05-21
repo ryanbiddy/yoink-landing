@@ -17,15 +17,17 @@ Set the canonical production URL in Vercel so metadata, Open Graph, JSON-LD,
 `robots.txt`, and `sitemap.xml` all point at the same place:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://your-production-domain.example
+NEXT_PUBLIC_CANONICAL_URL=https://your-production-domain.example
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-production-domain.example
 NEXT_PUBLIC_WINDOWS_DOWNLOAD_URL=https://github.com/ryanbiddy/yoink/releases/latest
 ```
 
 If the canonical URL variable is not set, the site falls back to
-`https://ryanbiddy.com/yoink`. Plausible is only loaded when
-`NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set. The Windows download URL should point at
-the latest GitHub release until the approved Chrome Web Store listing is ready.
+`https://yoink-landing-five.vercel.app`. `NEXT_PUBLIC_CANONICAL_URL` is the
+single-line domain swap to use when the final Yoink domain goes live. Plausible
+is only loaded when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set. The Windows download
+URL should point at the latest GitHub release until the approved Chrome Web
+Store listing is ready.
 
 ## Roadmap waitlists
 

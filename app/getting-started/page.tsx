@@ -9,7 +9,7 @@ import {
 } from "../../components/SitePrimitives";
 import { githubUrl, operatorSkillUrl, siteUrl } from "../site";
 
-const canonicalUrl = "https://ryanbiddy.com/yoink/getting-started";
+const canonicalUrl = `${siteUrl}/getting-started`;
 const articleTitle = "Getting started: Yoink + Claude Code for YouTube research";
 const articleDescription =
   "Step-by-step setup for using Yoink with Claude Code. Install the helper, configure the MCP server, drop in the Skill, and run your first operator-grade hook autopsy.";

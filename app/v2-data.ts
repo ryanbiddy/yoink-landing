@@ -2,7 +2,7 @@ export const audienceRoutes = [
   {
     href: "/creators",
     title: "I want to analyze YouTube videos with Claude or ChatGPT",
-    body: "One-click capture for creators, operators, and anyone tired of taking notes at 2x.",
+    body: "Benchmark a niche, decode hooks and pacing, and turn videos into prompt-ready context without watching everything at 2x.",
   },
   {
     href: "/agents",
@@ -12,7 +12,7 @@ export const audienceRoutes = [
   {
     href: "/research",
     title: "I do research, competitive intel, or content strategy",
-    body: "Build a private video corpus, search it like text, and ask your AI what matters.",
+    body: "Build a private corpus, search it like text, and use comment signals, entities, and playlists to find what actually matters.",
   },
 ];
 

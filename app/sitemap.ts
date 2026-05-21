@@ -23,6 +23,10 @@ const routes = [
     priority: 0.8,
   },
   {
+    path: "/install",
+    priority: 0.8,
+  },
+  {
     path: "/research",
     priority: 0.8,
   },

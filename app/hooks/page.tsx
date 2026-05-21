@@ -8,7 +8,7 @@ import {
 } from "../../components/SitePrimitives";
 import { githubUrl, operatorSkillUrl, siteUrl } from "../site";
 
-const canonicalUrl = "https://ryanbiddy.com/yoink/hooks";
+const canonicalUrl = `${siteUrl}/hooks`;
 const articleTitle =
   "The 9 YouTube Hook Types - Yoink's Taxonomy, Explained";
 const articleDescription =

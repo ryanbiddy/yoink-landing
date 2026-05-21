@@ -9,7 +9,7 @@ import {
 } from "../../components/SitePrimitives";
 import { siteUrl } from "../site";
 
-const canonicalUrl = "https://ryanbiddy.com/yoink/channel-audit";
+const canonicalUrl = `${siteUrl}/channel-audit`;
 const articleTitle =
   "The 10-Video Channel Audit: how to read a YouTube channel like an operator";
 const articleDescription =
