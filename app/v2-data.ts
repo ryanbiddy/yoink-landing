@@ -16,6 +16,29 @@ export const audienceRoutes = [
   },
 ];
 
+export const launchArticles = [
+  {
+    href: "/hooks",
+    title: "The 9 YouTube Hook Types",
+    body: "Yoink's taxonomy for classifying YouTube openings and running hook autopsies with Claude, ChatGPT, or an agent.",
+  },
+  {
+    href: "/local-first",
+    title: "Why Yoink is local-first",
+    body: "The architecture and strategy behind keeping YouTube research on your machine.",
+  },
+  {
+    href: "/getting-started",
+    title: "Getting started with Claude Code",
+    body: "Install Yoink, connect MCP, drop in the Operator Skill, and run your first hook autopsy.",
+  },
+  {
+    href: "/channel-audit",
+    title: "The 10-video channel audit",
+    body: "A repeatable operator framework for reading a YouTube channel in under 30 minutes.",
+  },
+];
+
 export const starterPrompts = [
   "Decode the hook",
   "Outline the structure",

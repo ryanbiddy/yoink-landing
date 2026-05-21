@@ -26,6 +26,18 @@ const routes = [
     path: "/hooks",
     priority: 0.7,
   },
+  {
+    path: "/local-first",
+    priority: 0.7,
+  },
+  {
+    path: "/getting-started",
+    priority: 0.7,
+  },
+  {
+    path: "/channel-audit",
+    priority: 0.7,
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

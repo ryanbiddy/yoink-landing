@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   InstallCta,
+  LaunchArticleGrid,
   PageShell,
   Section,
   StripeDivider,
@@ -233,12 +234,6 @@ const agentPrompts = [
     title: "Your back catalog",
     body: "Yoink your own videos and find which hook types you never try. The missing category is often the next experiment.",
   },
-];
-
-const relatedIdeas = [
-  "How to build a private YouTube research corpus for Claude and ChatGPT",
-  "MCP for YouTube research: 13 local tools your agent can call",
-  "Comment Intelligence: how to mine YouTube comments for product and content ideas",
 ];
 
 const structuredData = {
@@ -592,19 +587,18 @@ export default function HooksPage() {
                 Agent Skills-compatible client.
               </p>
             </a>
-            <div
-              id="related-ideas"
-              className="border border-white/12 p-6"
-            >
+            <div id="related-ideas" className="border border-white/12 p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
                 Next articles
               </p>
-              <ul className="mt-5 space-y-3 text-sm leading-7 text-[#a3a3a3]">
-                {relatedIdeas.map((idea) => (
-                  <li key={idea}>{idea}</li>
-                ))}
-              </ul>
+              <p className="mt-5 text-lg leading-8 text-white">
+                Read the rest of the launch cluster for local-first
+                architecture, Claude Code setup, and the 10-video channel audit.
+              </p>
             </div>
+          </div>
+          <div className="mt-6">
+            <LaunchArticleGrid currentHref="/hooks" />
           </div>
         </Section>
       </article>

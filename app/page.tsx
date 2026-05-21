@@ -8,7 +8,7 @@ import {
   siteUrl,
   windowsDownloadUrl,
 } from "./site";
-import { audienceRoutes } from "./v2-data";
+import { audienceRoutes, launchArticles } from "./v2-data";
 
 const steps = [
   {
@@ -598,6 +598,31 @@ export default function Home() {
               language for video openings.
             </p>
           </Link>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-3">
+            {launchArticles
+              .filter((article) => article.href !== "/hooks")
+              .map((article) => (
+                <Link
+                  key={article.href}
+                  href={article.href}
+                  className="focus-ring group border border-white/12 p-6 transition hover:border-yoink-orange"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+                    Launch guide
+                  </p>
+                  <h3 className="mt-6 font-display text-4xl font-bold leading-none text-white">
+                    {article.title}
+                  </h3>
+                  <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+                    {article.body}
+                  </p>
+                  <p className="mt-8 text-sm font-semibold uppercase text-white group-hover:text-yoink-orange">
+                    Read article
+                  </p>
+                </Link>
+              ))}
+          </div>
         </div>
       </section>
 
@@ -849,6 +874,15 @@ export default function Home() {
             </Link>
             <Link className="focus-ring hover:text-white" href="/hooks">
               Hooks
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/local-first">
+              Local-first
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/getting-started">
+              Getting started
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/channel-audit">
+              Channel audit
             </Link>
             <Link className="focus-ring hover:text-white" href="/privacy">
               Privacy

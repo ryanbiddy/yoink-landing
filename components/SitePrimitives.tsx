@@ -7,7 +7,7 @@ import {
   operatorSkillUrl,
   windowsDownloadUrl,
 } from "../app/site";
-import { audienceRoutes } from "../app/v2-data";
+import { audienceRoutes, launchArticles } from "../app/v2-data";
 
 export type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -95,6 +95,15 @@ export function SiteFooter() {
           <Link className="focus-ring hover:text-white" href="/hooks">
             Hooks
           </Link>
+          <Link className="focus-ring hover:text-white" href="/local-first">
+            Local-first
+          </Link>
+          <Link className="focus-ring hover:text-white" href="/getting-started">
+            Getting started
+          </Link>
+          <Link className="focus-ring hover:text-white" href="/channel-audit">
+            Channel audit
+          </Link>
           <Link className="focus-ring hover:text-white" href="/privacy">
             Privacy
           </Link>
@@ -108,6 +117,39 @@ export function SiteFooter() {
         <p className="md:text-right">Copyright 2026 ReplayRyan.</p>
       </div>
     </footer>
+  );
+}
+
+export function LaunchArticleGrid({
+  currentHref,
+}: {
+  currentHref?: string;
+}) {
+  return (
+    <div className="grid gap-6 lg:grid-cols-4">
+      {launchArticles
+        .filter((article) => article.href !== currentHref)
+        .map((article) => (
+          <Link
+            key={article.href}
+            href={article.href}
+            className="focus-ring group border border-white/12 p-6 transition hover:border-yoink-orange"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+              Launch guide
+            </p>
+            <h3 className="mt-6 font-display text-4xl font-bold leading-none text-white">
+              {article.title}
+            </h3>
+            <p className="mt-5 text-base leading-8 text-[#a3a3a3]">
+              {article.body}
+            </p>
+            <p className="mt-8 text-sm font-semibold uppercase text-white group-hover:text-yoink-orange">
+              Read article
+            </p>
+          </Link>
+        ))}
+    </div>
   );
 }
 
