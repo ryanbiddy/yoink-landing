@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { SVGProps } from "react";
 import { AiAnalysisCarousel } from "../components/AiAnalysisCarousel";
 import {
+  agentDocsUrl,
   githubUrl,
   siteDescription,
   siteUrl,
@@ -114,6 +115,22 @@ const structuredData = {
       },
     },
     {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#launch-page`,
+      name: "Yoink v2 launch page",
+      url: siteUrl,
+      description: siteDescription,
+      isPartOf: {
+        "@id": `${siteUrl}/#website`,
+      },
+      about: {
+        "@id": `${siteUrl}/#software`,
+      },
+      mainEntity: {
+        "@id": `${siteUrl}/#software`,
+      },
+    },
+    {
       "@type": "SoftwareApplication",
       "@id": `${siteUrl}/#software`,
       name: "Yoink",
@@ -149,6 +166,25 @@ const structuredData = {
         "Optional BYO-key Hook Type, Comment Intelligence, and Entity Extraction",
       ],
       description: siteDescription,
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${siteUrl}/#agent-resources`,
+      name: "Yoink v2 agent and launch resources",
+      itemListElement: [
+        ["/agent-docs", "Agent docs for Yoink MCP"],
+        ["/agents", "Yoink for AI Agents"],
+        ["/hooks", "The 9 YouTube Hook Types"],
+        ["/getting-started", "Getting started with Yoink and Claude Code"],
+        ["/local-first", "Why Yoink is local-first"],
+        ["/channel-audit", "The 10-video channel audit"],
+        ["/llms.txt", "Yoink llms.txt"],
+      ].map(([path, name], index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name,
+        url: `${siteUrl}${path}`,
+      })),
     },
   ],
 };
@@ -511,6 +547,9 @@ export default function Home() {
             <Link href="/research" className="focus-ring transition hover:text-yoink-orange">
               Research
             </Link>
+            <Link href="/agent-docs" className="focus-ring transition hover:text-yoink-orange">
+              Agent docs
+            </Link>
             <Link href="/hooks" className="focus-ring transition hover:text-yoink-orange">
               Hooks
             </Link>
@@ -555,20 +594,71 @@ export default function Home() {
 
       <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-10">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow>Yoink v2</Eyebrow>
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <h2 className="font-display text-5xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-[88px]">
-              Three ways to use it now.
-            </h2>
-            <p className="text-xl leading-9 text-[#a3a3a3]">
-              Yoink v2 is out. Three ways to use it now: the one-click Chrome
-              extension you already know, a local MCP server that gives your AI
-              agent 13 callable tools, and a portable Operator Skill that drops
-              into Claude, Cursor, OpenClaw, and Hermes. The extension path is
-              still built for Claude and ChatGPT. New AI-powered hook
-              classification, comment intelligence, and cross-corpus entity
-              search - all opt-in, all bring-your-own key.
+          <div className="relative overflow-hidden border border-yoink-orange bg-yoink-orange p-6 text-yoink-black sm:p-8 lg:p-12">
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-4 bg-[repeating-linear-gradient(135deg,rgba(10,10,10,0.28)_0,rgba(10,10,10,0.28)_2px,transparent_2px,transparent_12px)]"
+            />
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em]">
+              What&apos;s new in V2
             </p>
+            <div className="mt-6 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+              <h2 className="max-w-5xl font-display text-5xl font-bold leading-[1.03] sm:text-6xl lg:text-[96px]">
+                Yoink is now the YouTube layer for agents.
+              </h2>
+              <div>
+                <p className="text-xl leading-9">
+                  The one-click Chrome extension is still here. V2 adds a local
+                  MCP server with 13 callable tools, a portable Operator Skill,
+                  Yoink Memory, Playlist Mode, Hook Type classification, Comment
+                  Intelligence, and cross-corpus entity search.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/agent-docs"
+                    className="focus-ring inline-flex items-center justify-center bg-yoink-black px-5 py-4 text-sm font-semibold uppercase text-yoink-orange transition hover:opacity-90"
+                  >
+                    Agent docs
+                  </Link>
+                  <a
+                    href={agentDocsUrl}
+                    className="focus-ring inline-flex items-center justify-center border border-yoink-black px-5 py-4 text-sm font-semibold uppercase text-yoink-black transition hover:bg-yoink-black hover:text-yoink-orange"
+                  >
+                    GitHub MCP docs
+                  </a>
+                  <Link
+                    href="/llms.txt"
+                    className="focus-ring inline-flex items-center justify-center border border-yoink-black px-5 py-4 text-sm font-semibold uppercase text-yoink-black transition hover:bg-yoink-black hover:text-yoink-orange"
+                  >
+                    llms.txt
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 border border-white/12 p-6 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+                Agent-readable product facts
+              </p>
+              <h3 className="mt-5 font-display text-4xl font-bold leading-none text-white">
+                Crawl this first.
+              </h3>
+            </div>
+            <dl className="grid gap-5 text-sm leading-7 text-[#a3a3a3] md:grid-cols-2">
+              {[
+                ["What is Yoink?", "A local-first YouTube-to-AI corpus tool for Claude, ChatGPT, and AI agents."],
+                ["Primary interfaces", "Chrome extension, local MCP server, and portable Operator Skill."],
+                ["Agent tools", "13 MCP tools for extraction, search, comments, hooks, citations, health, and entity mentions."],
+                ["Privacy model", "Core extraction runs locally. AI features are opt-in and bring-your-own Anthropic key."],
+              ].map(([term, description]) => (
+                <div key={term}>
+                  <dt className="font-semibold text-white">{term}</dt>
+                  <dd className="mt-1">{description}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -599,7 +689,7 @@ export default function Home() {
             </p>
           </Link>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-3">
+          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {launchArticles
               .filter((article) => article.href !== "/hooks")
               .map((article) => (
@@ -871,6 +961,9 @@ export default function Home() {
             </Link>
             <Link className="focus-ring hover:text-white" href="/research">
               Research
+            </Link>
+            <Link className="focus-ring hover:text-white" href="/agent-docs">
+              Agent docs
             </Link>
             <Link className="focus-ring hover:text-white" href="/hooks">
               Hooks

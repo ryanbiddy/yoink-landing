@@ -60,6 +60,9 @@ export function SiteHeader() {
             {link.href.slice(1)[0].toUpperCase() + link.href.slice(2)}
           </Link>
         ))}
+        <Link href="/agent-docs" className="focus-ring transition hover:text-yoink-orange">
+          Agent docs
+        </Link>
         <Link href="/hooks" className="focus-ring transition hover:text-yoink-orange">
           Hooks
         </Link>
@@ -91,6 +94,9 @@ export function SiteFooter() {
           </Link>
           <Link className="focus-ring hover:text-white" href="/research">
             Research
+          </Link>
+          <Link className="focus-ring hover:text-white" href="/agent-docs">
+            Agent docs
           </Link>
           <Link className="focus-ring hover:text-white" href="/hooks">
             Hooks

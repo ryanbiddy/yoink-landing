@@ -19,6 +19,10 @@ const routes = [
     priority: 0.8,
   },
   {
+    path: "/agent-docs",
+    priority: 0.8,
+  },
+  {
     path: "/research",
     priority: 0.8,
   },
@@ -37,6 +41,10 @@ const routes = [
   {
     path: "/channel-audit",
     priority: 0.7,
+  },
+  {
+    path: "/llms.txt",
+    priority: 0.6,
   },
 ];
 

@@ -17,6 +17,9 @@ export const windowsDownloadUrl =
 export const operatorSkillUrl =
   "https://raw.githubusercontent.com/ryanbiddy/yoink/main/skills/yoink/SKILL.md";
 
+export const agentDocsUrl =
+  "https://github.com/ryanbiddy/yoink/blob/main/docs/v2-mcp.md";
+
 export const siteTitle =
   "Yoink v2 - The YouTube layer for any AI agent";
 

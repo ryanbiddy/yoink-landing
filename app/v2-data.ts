@@ -23,6 +23,11 @@ export const launchArticles = [
     body: "Yoink's taxonomy for classifying YouTube openings and running hook autopsies with Claude, ChatGPT, or an agent.",
   },
   {
+    href: "/agent-docs",
+    title: "Agent docs for Yoink MCP",
+    body: "A crawlable technical reference for MCP setup, tools, supported clients, and the Operator Skill.",
+  },
+  {
     href: "/local-first",
     title: "Why Yoink is local-first",
     body: "The architecture and strategy behind keeping YouTube research on your machine.",
