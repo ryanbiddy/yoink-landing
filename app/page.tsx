@@ -582,6 +582,22 @@ export default function Home() {
               </article>
             ))}
           </div>
+
+          <Link
+            href="/hooks"
+            className="focus-ring mt-8 block border border-white/12 p-6 transition hover:border-yoink-orange"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-yoink-orange">
+              Canonical guide
+            </p>
+            <p className="mt-4 font-display text-4xl font-bold leading-none text-white">
+              Read the 9 YouTube Hook Types - Yoink&apos;s taxonomy, explained.
+            </p>
+            <p className="mt-4 text-base leading-8 text-[#a3a3a3]">
+              Built for creators, researchers, and AI agents that need a shared
+              language for video openings.
+            </p>
+          </Link>
         </div>
       </section>
 
